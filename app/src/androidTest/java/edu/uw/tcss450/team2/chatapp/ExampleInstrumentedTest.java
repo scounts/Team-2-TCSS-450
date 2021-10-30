@@ -1,4 +1,4 @@
-package edu.uw.tcss450.scounts.lab1myfirstapp;
+package edu.uw.tcss450.team2.chatapp;
 
 import android.content.Context;
 

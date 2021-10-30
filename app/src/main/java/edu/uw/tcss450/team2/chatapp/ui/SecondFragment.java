@@ -1,4 +1,4 @@
-package edu.uw.tcss450.scounts.lab1myfirstapp.ui;
+package edu.uw.tcss450.team2.chatapp.ui;
 
 import android.os.Bundle;
 
@@ -10,8 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.uw.tcss450.scounts.lab1myfirstapp.R;
-import edu.uw.tcss450.scounts.lab1myfirstapp.databinding.FragmentSecondBinding;
+import edu.uw.tcss450.team2.chatapp.databinding.FragmentSecondBinding;
 
 /**
  * A simple {@link Fragment} subclass.
