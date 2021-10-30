@@ -12,5 +12,6 @@
     <string name="action_register_short">Register</string>
 
     <string name="app_name">Chat App</string>
+    <string name="bottom_nav_belongs">Bottom Navigation Bar Belongs on This Page</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
