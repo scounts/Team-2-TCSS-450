@@ -5,19 +5,14 @@
     android:id="@+id/layout_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SecondFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".ui.HomeFragment">
 
     <TextView
-        android:id="@+id/text_message"
+        android:id="@+id/text_hello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:autofillHints=""
+        android:autofillHints="Hint"
         android:ems="10"
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress"
@@ -42,7 +42,7 @@
         app:layout_constraintBottom_toTopOf="@+id/edit_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:autofillHints="" />
+        android:autofillHints="Hint" />
 
     <EditText
         android:id="@+id/edit_first"
@@ -57,7 +57,7 @@
         app:layout_constraintBottom_toTopOf="@+id/edit_last"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:autofillHints="" />
+        android:autofillHints="Hint" />
 
     <EditText
         android:id="@+id/edit_password_1"
@@ -72,7 +72,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_fifty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:autofillHints="" />
+        android:autofillHints="Hint" />
 
     <EditText
         android:id="@+id/edit_password_2"
@@ -87,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_fifty"
-        android:autofillHints="" />
+        android:autofillHints="Hint" />
 
     <Button
         android:id="@+id/button_register"
