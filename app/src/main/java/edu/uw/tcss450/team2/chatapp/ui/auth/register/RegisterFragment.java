@@ -87,8 +87,15 @@ public class RegisterFragment extends Fragment {
     private void validateLast() {
         mNameValidator.processResult(
                 mNameValidator.apply(binding.editLast.getText().toString().trim()),
-                this::validateEmail,
+                this::validateUsername,
                 result -> binding.editLast.setError("Please enter a last name."));
+    }
+
+    private void validateUsername() {
+        mNameValidator.processResult(
+                mNameValidator.apply(binding.editUsername.getText().toString().trim()),
+                this::validateEmail,
+                result -> binding.editUsername.setError("Please enter a username."));
     }
 
     private void validateEmail() {
@@ -120,6 +127,7 @@ public class RegisterFragment extends Fragment {
         mRegisterModel.connect(
                 binding.editFirst.getText().toString(),
                 binding.editLast.getText().toString(),
+                binding.editUsername.getText().toString(),
                 binding.editEmail.getText().toString(),
                 binding.editPassword1.getText().toString());
         //This is an Asynchronous call. No statements after should rely on the
