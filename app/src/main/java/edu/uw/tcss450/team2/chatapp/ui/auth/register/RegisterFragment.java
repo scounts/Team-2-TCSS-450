@@ -115,7 +115,9 @@ public class RegisterFragment extends Fragment {
         mPassWordValidator.processResult(
                 mPassWordValidator.apply(binding.editPassword1.getText().toString()),
                 this::verifyAuthWithServer,
-                result -> binding.editPassword1.setError("Please enter a password with a special character, no spaces, at least 1 number, at least 1 letter, and at least 7 characters."));
+                result -> binding.editPassword1.setError("Please enter a password with a special" +
+                        " character, no spaces, at least 1 number, at least 1 letter," +
+                        " and at least 7 characters."));
     }
 
     private void verifyAuthWithServer() {
