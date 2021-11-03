@@ -36,8 +36,6 @@ public class RegisterFragment extends Fragment {
 
     private PasswordValidator mNameValidator = checkPwdLength(1);
 
-    private PasswordValidator mUsernameValidator = checkPwdLength(0);
-
     private PasswordValidator mEmailValidator = checkPwdLength(2)
             .and(checkExcludeWhiteSpace())
             .and(checkPwdSpecialChar("@"));
@@ -98,22 +96,8 @@ public class RegisterFragment extends Fragment {
     private void validateEmail() {
         mEmailValidator.processResult(
                 mEmailValidator.apply(binding.editEmail.getText().toString().trim()),
-                this::validateUsername,
+                this::validatePasswordsMatch,
                 result -> binding.editEmail.setError("Please enter a valid Email address."));
-    }
-
-    private void validateUsername() {
-        if (binding.editUsername.getText().toString().trim().length() == 0) {
-            mUsernameValidator.processResult(
-                    mUsernameValidator.apply(binding.editEmail.getText().toString().trim()),
-                    this::validatePasswordsMatch,
-                    result -> binding.editUsername.setError("Please enter a username."));
-        } else {
-            mUsernameValidator.processResult(
-                    mUsernameValidator.apply(binding.editUsername.getText().toString().trim()),
-                    this::validatePasswordsMatch,
-                    result -> binding.editUsername.setError("Please enter a username."));
-        }
     }
 
     private void validatePasswordsMatch() {
