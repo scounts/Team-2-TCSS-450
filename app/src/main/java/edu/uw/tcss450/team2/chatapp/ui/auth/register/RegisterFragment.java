@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 import edu.uw.tcss450.team2.chatapp.databinding.FragmentRegisterBinding;
 import edu.uw.tcss450.team2.chatapp.utils.PasswordValidator;
 
@@ -33,6 +35,8 @@ public class RegisterFragment extends Fragment {
     private RegisterViewModel mRegisterModel;
 
     private PasswordValidator mNameValidator = checkPwdLength(1);
+
+    private PasswordValidator mUsernameValidator = checkPwdLength(0);
 
     private PasswordValidator mEmailValidator = checkPwdLength(2)
             .and(checkExcludeWhiteSpace())
@@ -87,22 +91,29 @@ public class RegisterFragment extends Fragment {
     private void validateLast() {
         mNameValidator.processResult(
                 mNameValidator.apply(binding.editLast.getText().toString().trim()),
-                this::validateUsername,
-                result -> binding.editLast.setError("Please enter a last name."));
-    }
-
-    private void validateUsername() {
-        mNameValidator.processResult(
-                mNameValidator.apply(binding.editUsername.getText().toString().trim()),
                 this::validateEmail,
-                result -> binding.editUsername.setError("Please enter a username."));
+                result -> binding.editLast.setError("Please enter a last name."));
     }
 
     private void validateEmail() {
         mEmailValidator.processResult(
                 mEmailValidator.apply(binding.editEmail.getText().toString().trim()),
-                this::validatePasswordsMatch,
+                this::validateUsername,
                 result -> binding.editEmail.setError("Please enter a valid Email address."));
+    }
+
+    private void validateUsername() {
+        if (binding.editUsername.getText().toString().trim().length() == 0) {
+            mUsernameValidator.processResult(
+                    mUsernameValidator.apply(binding.editEmail.getText().toString().trim()),
+                    this::validatePasswordsMatch,
+                    result -> binding.editUsername.setError("Please enter a username."));
+        } else {
+            mUsernameValidator.processResult(
+                    mUsernameValidator.apply(binding.editUsername.getText().toString().trim()),
+                    this::validatePasswordsMatch,
+                    result -> binding.editUsername.setError("Please enter a username."));
+        }
     }
 
     private void validatePasswordsMatch() {
