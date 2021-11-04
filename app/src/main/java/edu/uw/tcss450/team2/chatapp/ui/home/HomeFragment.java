@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team2.chatapp.ui;
+package edu.uw.tcss450.team2.chatapp.ui.home;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
