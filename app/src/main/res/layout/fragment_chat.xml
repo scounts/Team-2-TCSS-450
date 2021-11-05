@@ -28,7 +28,7 @@
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:background="?colorPrimaryDark"
+        android:background="?colorPrimary"
         android:text="Add Chat"
         android:textColor="@color/light_gray"
         android:textAlignment="center"
