@@ -11,9 +11,8 @@
 
     <TextView
         android:id="@+id/textview_weather"
-        android:layout_width="420dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="92dp"
+        android:layout_width="391dp"
+        android:layout_height="50dp"
         android:background="?colorPrimary"
         android:padding="8dp"
         android:text="Weather Status"
@@ -23,13 +22,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textview_highTemp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_time" />
 
     <TextView
         android:id="@+id/textview_time"
-        android:layout_width="423dp"
-        android:layout_height="49dp"
+        android:layout_width="391dp"
+        android:layout_height="50dp"
 
+        android:layout_marginTop="32dp"
         android:background="?colorPrimary"
         android:padding="8dp"
         android:text="Time"
@@ -39,16 +41,14 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textview_weather"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.616" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textview_highTemp"
-        android:layout_width="425dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="92dp"
+        android:layout_width="391dp"
+        android:layout_height="50dp"
         android:background="?colorPrimary"
         android:padding="8dp"
         android:text="High Temp"
@@ -58,14 +58,14 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textview_lowTemp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_weather" />
 
     <TextView
         android:id="@+id/textview_lowTemp"
-        android:layout_width="427dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="84dp"
+        android:layout_width="391dp"
+        android:layout_height="50dp"
         android:background="?colorPrimary"
         android:padding="8dp"
         android:text="Low Temp"
@@ -75,8 +75,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_highTemp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
