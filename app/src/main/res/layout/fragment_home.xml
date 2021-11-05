@@ -7,15 +7,81 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_hello"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="Yellow Sun Placeholder"
+        android:src="@drawable/ic_sun_yellow_64dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_weatherLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toEndOf="@+id/textView_weatherLabel"
+        app:layout_constraintTop_toTopOf="@+id/textView_weatherLabel" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_root"
+        android:layout_width="388dp"
+        android:layout_height="342dp"
+        android:layout_below="@id/layout_root"
+        android:layout_marginTop="32dp"
+        android:background="?android:colorBackgroundFloating"
+        android:nestedScrollingEnabled="false"
+        android:orientation="vertical"
+        app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.619" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_chatListt"
+        app:layout_constraintVertical_bias="0.003" />
+
+    <TextView
+        android:id="@+id/textView_chatListt"
+        android:layout_width="256dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="36dp"
+        android:background="?colorPrimary"
+        android:text="Chat List"
+        android:textAlignment="center"
+        android:textColor="@color/light_gray"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_weatherLabel" />
+
+    <TextView
+        android:id="@+id/textView_weatherLabel"
+        android:layout_width="256dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="36dp"
+        android:background="?colorPrimary"
+        android:text="Weather"
+        android:textAlignment="center"
+        android:textColor="@color/light_gray"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_welcomeMessage" />
+
+    <TextView
+        android:id="@+id/textView_welcomeMessage"
+        android:layout_width="256dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="32dp"
+        android:background="?colorPrimary"
+        android:text="Welcome Message"
+        android:textAlignment="center"
+        android:textColor="@color/light_gray"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
