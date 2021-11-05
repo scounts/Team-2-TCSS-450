@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 import edu.uw.tcss450.team2.chatapp.databinding.FragmentRegisterBinding;
 import edu.uw.tcss450.team2.chatapp.utils.PasswordValidator;
 
@@ -113,13 +115,16 @@ public class RegisterFragment extends Fragment {
         mPassWordValidator.processResult(
                 mPassWordValidator.apply(binding.editPassword1.getText().toString()),
                 this::verifyAuthWithServer,
-                result -> binding.editPassword1.setError("Please enter a valid Password."));
+                result -> binding.editPassword1.setError("Please enter a password with a special" +
+                        " character, no spaces, at least 1 number, at least 1 letter," +
+                        " and at least 7 characters."));
     }
 
     private void verifyAuthWithServer() {
         mRegisterModel.connect(
                 binding.editFirst.getText().toString(),
                 binding.editLast.getText().toString(),
+                binding.editUsername.getText().toString(),
                 binding.editEmail.getText().toString(),
                 binding.editPassword1.getText().toString());
         //This is an Asynchronous call. No statements after should rely on the

@@ -1,5 +1,5 @@
 <resources>
-
+<!-- STYLES -->
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -7,5 +7,16 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <!-- Test application theme. -->
+    <style name="AppTheme2" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#28AE28</item>
+        <item name="colorPrimaryDark">#2C8B2D</item>
+        <item name="colorAccent">#8AFA6B</item>
+        <item name="android:navigationBarColor">@color/dark_gray</item>
+        <item name="android:navigationIcon">@color/light_gray</item>
+    </style>
+
+<!-- THEMES -->
 
 </resources>
