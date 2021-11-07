@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team2.chatapp.model;
+package edu.uw.tcss450.team2.thermochat.model;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
