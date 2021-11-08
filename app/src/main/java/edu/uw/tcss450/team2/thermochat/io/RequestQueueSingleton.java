@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team2.chatapp.io;
+package edu.uw.tcss450.team2.thermochat.io;
 
 import android.content.Context;
 import android.graphics.Bitmap;

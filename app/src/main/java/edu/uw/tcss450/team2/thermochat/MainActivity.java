@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team2.chatapp;
+package edu.uw.tcss450.team2.thermochat;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -11,7 +11,7 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import edu.uw.tcss450.team2.chatapp.model.UserInfoViewModel;
+import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 
 public class MainActivity extends AppCompatActivity {
 

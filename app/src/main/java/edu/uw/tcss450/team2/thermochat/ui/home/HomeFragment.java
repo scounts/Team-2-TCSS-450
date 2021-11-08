@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team2.chatapp.ui.home;
+package edu.uw.tcss450.team2.thermochat.ui.home;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.uw.tcss450.team2.chatapp.R;
-import edu.uw.tcss450.team2.chatapp.databinding.FragmentHomeBinding;
-import edu.uw.tcss450.team2.chatapp.databinding.FragmentRegisterBinding;
-import edu.uw.tcss450.team2.chatapp.model.UserInfoViewModel;
+import edu.uw.tcss450.team2.thermochat.R;
+import edu.uw.tcss450.team2.thermochat.databinding.FragmentHomeBinding;
+import edu.uw.tcss450.team2.thermochat.databinding.FragmentRegisterBinding;
+import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 
 /**
  * A simple {@link Fragment} subclass.

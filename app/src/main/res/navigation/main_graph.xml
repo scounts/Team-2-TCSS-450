@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="edu.uw.tcss450.team2.chatapp.ui.home.HomeFragment"
+        android:name="edu.uw.tcss450.team2.thermochat.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home"></fragment>
     <fragment
         android:id="@+id/navigation_chat"
-        android:name="edu.uw.tcss450.team2.chatapp.ui.chat.ChatFragment"
+        android:name="edu.uw.tcss450.team2.thermochat.ui.chat.ChatFragment"
         android:label="@string/title_chat"
         tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/navigation_contacts"
-        android:name="edu.uw.tcss450.team2.chatapp.ui.contacts.ContactListFragment"
+        android:name="edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListFragment"
         android:label="@string/title_contacts"
         tools:layout="@layout/fragment_contact_list" />
     <fragment
         android:id="@+id/navigation_weather"
-        android:name="edu.uw.tcss450.team2.chatapp.ui.weather.WeatherFragment"
+        android:name="edu.uw.tcss450.team2.thermochat.ui.weather.WeatherFragment"
         android:label="@string/title_weather"
         tools:layout="@layout/fragment_weather" />
 </navigation>

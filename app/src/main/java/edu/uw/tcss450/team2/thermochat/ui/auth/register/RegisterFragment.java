@@ -1,7 +1,7 @@
-package edu.uw.tcss450.team2.chatapp.ui.auth.register;
+package edu.uw.tcss450.team2.thermochat.ui.auth.register;
 
-import static edu.uw.tcss450.team2.chatapp.utils.PasswordValidator.*;
-import static edu.uw.tcss450.team2.chatapp.utils.PasswordValidator.checkClientPredicate;
+import static edu.uw.tcss450.team2.thermochat.utils.PasswordValidator.*;
+import static edu.uw.tcss450.team2.thermochat.utils.PasswordValidator.checkClientPredicate;
 
 import android.os.Bundle;
 
@@ -19,10 +19,8 @@ import android.view.ViewGroup;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Objects;
-
-import edu.uw.tcss450.team2.chatapp.databinding.FragmentRegisterBinding;
-import edu.uw.tcss450.team2.chatapp.utils.PasswordValidator;
+import edu.uw.tcss450.team2.thermochat.databinding.FragmentRegisterBinding;
+import edu.uw.tcss450.team2.thermochat.utils.PasswordValidator;
 
 
 /**

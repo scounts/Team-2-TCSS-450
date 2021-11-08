@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team2.chatapp;
+package edu.uw.tcss450.team2.thermochat;
 
 import org.junit.Test;
 

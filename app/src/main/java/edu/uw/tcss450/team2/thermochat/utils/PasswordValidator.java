@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team2.chatapp.utils;
+package edu.uw.tcss450.team2.thermochat.utils;
 
 import java.util.Optional;
 import java.util.function.Consumer;
