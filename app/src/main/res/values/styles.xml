@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackgroundFloating">#85754d</item>
     </style>
     <!-- Test application theme. -->
     <style name="AppTheme2" parent="Theme.AppCompat">

@@ -1,7 +1,7 @@
-package edu.uw.tcss450.team2.chatapp.ui.auth.signin;
+package edu.uw.tcss450.team2.thermochat.ui.auth.signin;
 
 
-import static edu.uw.tcss450.team2.chatapp.utils.PasswordValidator.*;
+import static edu.uw.tcss450.team2.thermochat.utils.PasswordValidator.*;
 
 import android.os.Bundle;
 
@@ -19,8 +19,8 @@ import android.view.ViewGroup;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import edu.uw.tcss450.team2.chatapp.databinding.FragmentSignInBinding;
-import edu.uw.tcss450.team2.chatapp.utils.PasswordValidator;
+import edu.uw.tcss450.team2.thermochat.databinding.FragmentSignInBinding;
+import edu.uw.tcss450.team2.thermochat.utils.PasswordValidator;
 
 /**
  * A simple {@link Fragment} subclass.
