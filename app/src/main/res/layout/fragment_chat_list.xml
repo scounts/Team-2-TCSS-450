@@ -6,21 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/textView_addContact"
-        android:layout_width="258dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
-        android:background="?colorPrimary"
-        android:hint="Find Contact"
-        android:textAlignment="center"
-        android:textColor="@color/light_gray"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton_addContact"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_root"
@@ -33,38 +18,28 @@
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.802"
+        app:layout_constraintVertical_bias="0.796"
         tools:context="edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListFragment"
         tools:listitem="@layout/fragment_contact_card" />
-
-    <ImageButton
-        android:id="@+id/imageButton_addContact"
-        android:layout_width="96dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_addContact"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView_addContact" />
 
     <TextView
         android:id="@+id/textView_requestContact"
         android:layout_width="258dp"
         android:layout_height="43dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:background="?colorPrimary"
-        android:text="Requests"
+        android:text="Chats"
         android:textAlignment="center"
         android:textColor="@color/light_gray"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/list_root"
         app:layout_constraintEnd_toStartOf="@+id/imageButton_requestContact"
-        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_addContact" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton_requestContact"
@@ -75,6 +50,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView_requestContact"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic__contact_add_black_24dp" />
+        app:srcCompat="@drawable/ic_chat_add_black_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
