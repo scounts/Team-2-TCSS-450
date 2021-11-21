@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team2.thermochat.ui.contacts;
+package edu.uw.tcss450.team2.thermochat.ui.chat;
 
 import android.app.Application;
 import android.util.Log;
@@ -20,20 +20,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+
+import edu.uw.tcss450.team2.thermochat.ui.contacts.Contact;
 
 
 /**
  * A ViewModel for a list of contacts.
  */
-public class ContactListViewModel extends AndroidViewModel {
+public class ChatListViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<Contact>> mContactList;
+    private MutableLiveData<List<ChatRoom>> mChatList;
     private final MutableLiveData<JSONObject> mResponse;
 
 
@@ -42,9 +42,9 @@ public class ContactListViewModel extends AndroidViewModel {
      *
      * @param application the application.
      */
-    public ContactListViewModel(@NonNull Application application) {
+    public ChatListViewModel(@NonNull Application application) {
         super(application);
-        mContactList = new MutableLiveData<>(new ArrayList<>());
+        mChatList = new MutableLiveData<>(new ArrayList<>());
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
     }
@@ -55,18 +55,18 @@ public class ContactListViewModel extends AndroidViewModel {
      * @param owner the owner
      * @param observer the observer
      */
-    public void addContactListObserver(@NonNull LifecycleOwner owner,
-                                       @NonNull Observer<? super List<Contact>> observer){
-        mContactList.observe(owner, observer);
+    public void addChatListObserver(@NonNull LifecycleOwner owner,
+                                       @NonNull Observer<? super List<ChatRoom>> observer){
+        mChatList.observe(owner, observer);
     }
 
     /**
-     * Connects to webservice endpoint to retrieve a list of contacts.
+     * Connects to webservice endpoint to retrieve a list of chats.
      *
      * @param jwt a valid jwt.
      */
     public void connectGet (String jwt){
-        String url = "https://team-2-tcss-450-project.herokuapp.com/contacts";
+        String url = "https://mobile-app-spring-2020.herokuapp.com/contacts";
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -96,40 +96,32 @@ public class ContactListViewModel extends AndroidViewModel {
      * @param result result from webservice.
      */
     private void handleSuccess(final JSONObject result) {
-        ArrayList<Contact> temp = new ArrayList<>();
+        ArrayList<ChatRoom> temp = new ArrayList<>();
         try {
             JSONArray contacts = result.getJSONArray("contacts");
             for (int i = 0; i < contacts.length(); i++) {
                 JSONObject contact = contacts.getJSONObject(i);
+                int verified = contact.getInt("verified");
+                if(verified == 1){
+                    String email= contact.getString("email");
+                    String firstName= contact.getString("firstName");
+                    String lastName= contact.getString("lastName");
+                    String username= contact.getString("userName");
+                    int memberID = contact.getInt("memberId");
 
-                //String email= contact.getString("email");
-                //String firstName= contact.getString("firstName");
-                //String lastName= contact.getString("lastName");
-                String username= contact.getString("userName");
-                int memberID = contact.getInt("memberId");
-
-                //Contact entry = new Contact(email, firstName, lastName, username, memberID);
-                Contact entry = new Contact(username, memberID);
-                temp.add(entry);
-
+                    ChatRoom entry = new ChatRoom();
+                    temp.add(entry);
+                }
             }
         } catch (JSONException e) {
             Log.e("JSON PARSE ERROR", "Found in handle Success ContactViewModel");
             Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
         }
-        mContactList.setValue(temp);
+        mChatList.setValue(temp);
     }
 
     private void handleError(final VolleyError error) {
-        if (Objects.isNull(error.networkResponse)) {
-            Log.e("NETWORK ERROR", error.getMessage());
-        }
-        else {
-            String data = new String(error.networkResponse.data, Charset.defaultCharset());
-            Log.e("CLIENT ERROR",
-                    error.networkResponse.statusCode +
-                            " " +
-                            data);
-        }
+        Log.e("CONNECTION ERROR", "Oooops no chats");
+        //throw new IllegalStateException(error.getMessage());
     }
 }

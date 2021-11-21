@@ -69,7 +69,8 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
         void setContact(final Contact contact) {
             mContact = contact;
             binding.textContactUsername.setText(contact.getUsername());
-            String contactName = contact.getContactFirstName() + " " + contact.getContactLastName();
+            //String contactName = contact.getContactFirstName() + " " + contact.getContactLastName();
+            String contactName = "Test Name";
             binding.textContactName.setText(contactName);
         }
 

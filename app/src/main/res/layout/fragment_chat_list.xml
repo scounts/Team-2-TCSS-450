@@ -9,7 +9,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_root"
-        android:name="edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListFragment"
+        android:name="edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragment"
         android:layout_width="376dp"
         android:layout_height="534dp"
         android:layout_marginStart="8dp"
@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.796"
-        tools:context="edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListFragment"
+        tools:context="edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragment"
         tools:listitem="@layout/fragment_contact_card" />
 
     <TextView
