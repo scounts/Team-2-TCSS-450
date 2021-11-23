@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +17,8 @@ import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentChatListBinding;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentContactListBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
-import edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListViewModel;
-import edu.uw.tcss450.team2.thermochat.ui.contacts.ContactRecyclerViewAdapter;
+import edu.uw.tcss450.team2.thermochat.ui.chat.ChatListViewModel;
+import edu.uw.tcss450.team2.thermochat.ui.chat.ChatListRecyclerViewAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +26,7 @@ import edu.uw.tcss450.team2.thermochat.ui.contacts.ContactRecyclerViewAdapter;
 public class ChatListFragment extends Fragment {
 
     private ChatListViewModel mModel;
+    private ChatListRecyclerViewAdapter mAdapter;
 
     public ChatListFragment() {
         // Required empty public constructor
@@ -38,7 +40,6 @@ public class ChatListFragment extends Fragment {
         UserInfoViewModel model = new ViewModelProvider(getActivity())
                 .get(UserInfoViewModel.class);
 
-        Log.i("CONTACT", model.getmJwt());
         mModel.connectGet(model.getmJwt());
     }
 
@@ -48,7 +49,6 @@ public class ChatListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_chat_list, container, false);
     }
 
@@ -59,17 +59,18 @@ public class ChatListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //Local access to the ViewBinding object. No need to create as Instance Var as it is only
-        //used here.
         FragmentChatListBinding binding = FragmentChatListBinding.bind(getView());
 
         mModel.addChatListObserver(getViewLifecycleOwner(), chatList -> {
-            //if (!contactList.isEmpty()) {
+            //if (!chatList.isEmpty()) {
             binding.listRoot.setAdapter(
                     new ChatListRecyclerViewAdapter(chatList)
             );
-            //binding.layoutWait.setVisibility(View.GONE);
             //}
         });
+//        binding.imageButtonRequestContact.setOnClickListener(button ->
+//                Navigation.findNavController(getView()).navigate(
+//                        ChatListFragmentDirections
+//                                .actionNavigationChatToChatFragment()));
     }
 }

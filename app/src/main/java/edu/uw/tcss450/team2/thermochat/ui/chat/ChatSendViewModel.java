@@ -46,8 +46,9 @@ public class ChatSendViewModel extends AndroidViewModel {
 
         JSONObject body = new JSONObject();
         try {
-            body.put("message", message);
             body.put("chatId", chatId);
+            body.put("message", message);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

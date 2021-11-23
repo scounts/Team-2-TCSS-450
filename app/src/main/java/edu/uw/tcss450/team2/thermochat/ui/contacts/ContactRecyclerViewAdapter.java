@@ -49,7 +49,7 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
         public Contact mContact;
 
         /**
-         * Constructore for teh contact view holder.
+         * Constructor for the contact view holder.
          *
          * @param view the view.
          */
@@ -72,6 +72,8 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
             //String contactName = contact.getContactFirstName() + " " + contact.getContactLastName();
             String contactName = "Test Name";
             binding.textContactName.setText(contactName);
+
+            binding.cardRoot.setVisibility(View.VISIBLE);
         }
 
     }

@@ -8,7 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
-import androidx.navigation.Navigation;
+
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -25,8 +25,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
+import java.util.Objects;
+import java.util.function.IntFunction;
+
+import edu.uw.tcss450.team2.thermochat.R;
 
 /**
  * A ViewModel for a list of contacts.
@@ -96,19 +99,16 @@ public class ContactListViewModel extends AndroidViewModel {
      * @param result result from webservice.
      */
     private void handleSuccess(final JSONObject result) {
+
         ArrayList<Contact> temp = new ArrayList<>();
         try {
             JSONArray contacts = result.getJSONArray("contacts");
             for (int i = 0; i < contacts.length(); i++) {
                 JSONObject contact = contacts.getJSONObject(i);
 
-                //String email= contact.getString("email");
-                //String firstName= contact.getString("firstName");
-                //String lastName= contact.getString("lastName");
-                String username= contact.getString("userName");
-                int memberID = contact.getInt("memberId");
+                String username= contact.getString("username");
+                int memberID = contact.getInt("memberid");
 
-                //Contact entry = new Contact(email, firstName, lastName, username, memberID);
                 Contact entry = new Contact(username, memberID);
                 temp.add(entry);
 

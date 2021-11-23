@@ -66,7 +66,7 @@ public class ChatListViewModel extends AndroidViewModel {
      * @param jwt a valid jwt.
      */
     public void connectGet (String jwt){
-        String url = "https://mobile-app-spring-2020.herokuapp.com/contacts";
+        String url = "https://team-2-tcss-450-project.herokuapp.com/memberchats";
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -98,23 +98,17 @@ public class ChatListViewModel extends AndroidViewModel {
     private void handleSuccess(final JSONObject result) {
         ArrayList<ChatRoom> temp = new ArrayList<>();
         try {
-            JSONArray contacts = result.getJSONArray("contacts");
-            for (int i = 0; i < contacts.length(); i++) {
-                JSONObject contact = contacts.getJSONObject(i);
-                int verified = contact.getInt("verified");
-                if(verified == 1){
-                    String email= contact.getString("email");
-                    String firstName= contact.getString("firstName");
-                    String lastName= contact.getString("lastName");
-                    String username= contact.getString("userName");
-                    int memberID = contact.getInt("memberId");
-
-                    ChatRoom entry = new ChatRoom();
-                    temp.add(entry);
-                }
+            JSONArray chats = result.getJSONArray("chats");
+            for (int i = 0; i < chats.length(); i++) {
+                JSONObject chat = chats.getJSONObject(i);
+                //String name = chat.getString("name");
+                String name = "Example Chat Name";
+                int key = chat.getInt("chatid");
+                ChatRoom post = new ChatRoom(name, key);
+                temp.add(post);
             }
         } catch (JSONException e) {
-            Log.e("JSON PARSE ERROR", "Found in handle Success ContactViewModel");
+            Log.e("JSON PARSE ERROR", "Found in handle Success ChatViewModel");
             Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
         }
         mChatList.setValue(temp);

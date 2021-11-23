@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import edu.uw.tcss450.team2.thermochat.MainActivity;
 import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentChatBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
@@ -21,12 +22,14 @@ import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 public class ChatFragment extends Fragment {
 
     //The chat ID for "global" chat
-    private static final int HARD_CODED_CHAT_ID = 1;
+    //private static final int HARD_CODED_CHAT_ID = 1;
 
     private ChatViewModel mChatModel;
     private UserInfoViewModel mUserModel;
-
     private ChatSendViewModel mSendModel;
+
+    private int mChatID;
+    private String mChatName;
 
     public ChatFragment() {
         // Required empty public constructor
@@ -36,9 +39,15 @@ public class ChatFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ViewModelProvider provider = new ViewModelProvider(getActivity());
+
+        ChatFragmentArgs args = ChatFragmentArgs.fromBundle(getArguments());
+        mChatID = args.getChat().getmChatID();
+        mChatName = args.getChat().getmChatName();
+        //((MainActivity) getActivity()).setActionBarTitle(mChatName);
+
         mUserModel = provider.get(UserInfoViewModel.class);
         mChatModel = provider.get(ChatViewModel.class);
-        mChatModel.getFirstMessages(HARD_CODED_CHAT_ID, mUserModel.getmJwt());
+        mChatModel.getFirstMessages(mChatID, mUserModel.getmJwt());
         mSendModel = provider.get(ChatSendViewModel.class);
     }
 
@@ -62,17 +71,17 @@ public class ChatFragment extends Fragment {
         //Set the Adapter to hold a reference to the list FOR THIS chat ID that the ViewModel
         //holds.
         rv.setAdapter(new ChatRecyclerViewAdapter(
-                mChatModel.getMessageListByChatId(HARD_CODED_CHAT_ID),
+                mChatModel.getMessageListByChatId(mChatID),
                 mUserModel.getEmail()));
 
 
         //When the user scrolls to the top of the RV, the swiper list will "refresh"
         //The user is out of messages, go out to the service and get more
         binding.swipeContainer.setOnRefreshListener(() -> {
-            mChatModel.getNextMessages(HARD_CODED_CHAT_ID, mUserModel.getmJwt());
+            mChatModel.getNextMessages(mChatID, mUserModel.getmJwt());
         });
 
-        mChatModel.addMessageObserver(HARD_CODED_CHAT_ID, getViewLifecycleOwner(),
+        mChatModel.addMessageObserver(mChatID, getViewLifecycleOwner(),
                 list -> {
                     /*
                      * This solution needs work on the scroll position. As a group,
@@ -88,7 +97,7 @@ public class ChatFragment extends Fragment {
 
         //Send button was clicked. Send the message via the SendViewModel
         binding.buttonSend.setOnClickListener(button -> {
-            mSendModel.sendMessage(HARD_CODED_CHAT_ID,
+            mSendModel.sendMessage(mChatID,
                     mUserModel.getmJwt(),
                     binding.editMessage.getText().toString());
         });

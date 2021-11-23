@@ -29,7 +29,8 @@
         android:layout_marginBottom="16dp"
         android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_chat_send_black_24dp"/>
 
     <!--  Used for loading new messages  -->
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

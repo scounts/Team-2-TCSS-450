@@ -1,6 +1,8 @@
 package edu.uw.tcss450.team2.thermochat.ui.contacts;
 
-public class Contact {
+import java.io.Serializable;
+
+public class Contact implements Serializable {
 
     //private final String myEmail;
     //private final String myFirstName;

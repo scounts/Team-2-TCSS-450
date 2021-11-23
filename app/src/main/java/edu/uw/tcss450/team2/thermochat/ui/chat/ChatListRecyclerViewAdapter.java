@@ -5,11 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import edu.uw.tcss450.team2.thermochat.R;
+import edu.uw.tcss450.team2.thermochat.databinding.FragmentChatCardBinding;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentContactCardBinding;
 import edu.uw.tcss450.team2.thermochat.ui.chat.ChatRoom;
 
@@ -24,14 +26,13 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<edu.uw.tcs
 
     @NonNull
     @Override
-    public edu.uw.tcss450.team2.thermochat.ui.chat.ChatListRecyclerViewAdapter.ChatListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new edu.uw.tcss450.team2.thermochat.ui.chat.ChatListRecyclerViewAdapter.ChatListViewHolder(LayoutInflater
-                .from(parent.getContext())
+    public ChatListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ChatListViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_chat_card, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull edu.uw.tcss450.team2.thermochat.ui.chat.ChatListRecyclerViewAdapter.ChatListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ChatListViewHolder holder, int position) {
         holder.setChat(mChats.get(position));
     }
 
@@ -46,7 +47,7 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<edu.uw.tcs
     public class ChatListViewHolder extends RecyclerView.ViewHolder {
 
         public final View mView;
-        public FragmentContactCardBinding binding;
+        public FragmentChatCardBinding binding;
         public ChatRoom mChat;
 
         /**
@@ -57,8 +58,15 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<edu.uw.tcs
         public ChatListViewHolder(View view) {
             super(view);
             mView = view;
-            binding = FragmentContactCardBinding.bind(view);
+            binding = FragmentChatCardBinding.bind(view);
 
+            view.setOnClickListener(v -> {
+                ChatListFragmentDirections.ActionNavigationChatToChatFragment directions =
+                        ChatListFragmentDirections.
+                                actionNavigationChatToChatFragment(mChat);
+
+                Navigation.findNavController(mView).navigate(directions);
+            });
 
         }
 
