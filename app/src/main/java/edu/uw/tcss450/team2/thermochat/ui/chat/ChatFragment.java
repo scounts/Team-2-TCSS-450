@@ -43,7 +43,6 @@ public class ChatFragment extends Fragment {
         ChatFragmentArgs args = ChatFragmentArgs.fromBundle(getArguments());
         mChatID = args.getChat().getmChatID();
         mChatName = args.getChat().getmChatName();
-        //((MainActivity) getActivity()).setActionBarTitle(mChatName);
 
         mUserModel = provider.get(UserInfoViewModel.class);
         mChatModel = provider.get(ChatViewModel.class);

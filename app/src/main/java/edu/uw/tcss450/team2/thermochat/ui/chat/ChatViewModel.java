@@ -219,7 +219,7 @@ public class ChatViewModel extends AndroidViewModel {
             String data = new String(error.networkResponse.data, Charset.defaultCharset());
             Log.e("CLIENT ERROR",
                     error.networkResponse.statusCode +
-                            " " +
+                            " \n" +
                             data);
         }
     }
