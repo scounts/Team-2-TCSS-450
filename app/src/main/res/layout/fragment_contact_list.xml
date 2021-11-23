@@ -6,19 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textView_addContact"
         android:layout_width="258dp"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+
+
         android:layout_marginTop="36dp"
-        android:background="?colorPrimary"
         android:hint="Find Contact"
-        android:textAlignment="center"
         android:textColor="@color/light_gray"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/imageButton_addContact"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.auth.signin.SignInFragment">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

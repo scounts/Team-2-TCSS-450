@@ -25,14 +25,12 @@
         tools:context="edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragment"
         tools:listitem="@layout/fragment_contact_card" />
 
-    <TextView
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textView_requestContact"
         android:layout_width="258dp"
-        android:layout_height="43dp"
-        android:background="?colorPrimary"
-        android:text="Chats"
-        android:textAlignment="center"
-        android:textColor="@color/light_gray"
+        android:layout_height="wrap_content"
+        android:hint="Search"
+        android:textColorHint="@color/light_gray"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/list_root"
@@ -46,6 +44,7 @@
         android:layout_width="72dp"
         android:layout_height="48dp"
         android:layout_marginEnd="16dp"
+        android:backgroundTint="?colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/textView_requestContact"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView_requestContact"
