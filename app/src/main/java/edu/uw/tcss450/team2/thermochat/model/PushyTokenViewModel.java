@@ -166,4 +166,9 @@ public class PushyTokenViewModel extends AndroidViewModel{
             }
         }
     }
+
+    /* TO DO:
+    *  Implement function to delete token from web service.
+    *
+    */
 }
