@@ -2,6 +2,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit_first_message_hint">Enter a message</string>
     <string name="button_first_send">Send</string>
+    <string name="switch_sign_in">Stay Signed In</string>
+    <string name="keys_shared_prefs">My Auth App Shared Prefs</string>
+    <string name="keys_prefs_jwt">Sharded Prefs JWT</string>
+    <string name="action_sign_out">Sign Out</string>
 
     <string name="hint_first">First Name</string>
     <string name="hint_last">Last Name</string>
