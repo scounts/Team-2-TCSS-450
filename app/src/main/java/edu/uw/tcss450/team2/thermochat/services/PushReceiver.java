@@ -24,6 +24,8 @@ public class PushReceiver extends BroadcastReceiver {
 
     public static final String RECEIVED_NEW_MESSAGE = "new message from pushy";
 
+    public static final String RECEIVED_NEW_CONTACT = "new contact from pushy";
+
     private static final String CHANNEL_ID = "1";
 
     @Override

@@ -6,24 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_root"
-        android:name="edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragment"
-        android:layout_width="376dp"
-        android:layout_height="534dp"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="366dp"
+        android:layout_height="571dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="96dp"
         android:layout_marginEnd="8dp"
-        android:orientation="vertical"
-        app:layoutManager="LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.796"
-        tools:context="edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragment"
-        tools:listitem="@layout/fragment_contact_card" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_root"
+            android:name="edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context="edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragment"
+            tools:listitem="@layout/fragment_contact_card" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textView_requestContact"
@@ -33,7 +43,7 @@
         android:textColorHint="@color/light_gray"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/list_root"
+        app:layout_constraintBottom_toTopOf="@+id/swipe_container"
         app:layout_constraintEnd_toStartOf="@+id/imageButton_requestContact"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,6 +1,7 @@
 package edu.uw.tcss450.team2.thermochat.ui.chat;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class ChatFragment extends Fragment {
     private ChatViewModel mChatModel;
     private UserInfoViewModel mUserModel;
     private ChatSendViewModel mSendModel;
+    private ChatListViewModel mChatListViewModel;
 
     private int mChatID;
     private String mChatName;
@@ -41,11 +43,13 @@ public class ChatFragment extends Fragment {
         ViewModelProvider provider = new ViewModelProvider(getActivity());
 
         ChatFragmentArgs args = ChatFragmentArgs.fromBundle(getArguments());
-        mChatID = args.getChat().getmChatID();
+        Log.d("ID", ""+args.getChat().getmChatId());
+        mChatID = args.getChat().getmChatId();
         mChatName = args.getChat().getmChatName();
 
         mUserModel = provider.get(UserInfoViewModel.class);
         mChatModel = provider.get(ChatViewModel.class);
+        mChatListViewModel = provider.get(ChatListViewModel.class);
         mChatModel.getFirstMessages(mChatID, mUserModel.getmJwt());
         mSendModel = provider.get(ChatSendViewModel.class);
     }
@@ -96,9 +100,12 @@ public class ChatFragment extends Fragment {
 
         //Send button was clicked. Send the message via the SendViewModel
         binding.buttonSend.setOnClickListener(button -> {
+            Log.d("MESSAGING", "Made it here Before");
             mSendModel.sendMessage(mChatID,
                     mUserModel.getmJwt(),
                     binding.editMessage.getText().toString());
+            mChatModel.getNextMessages(mChatID, mUserModel.getmJwt());
+            Log.d("MESSAGING", "Made it here After");
         });
         //when we get the response back from the server, clear the edittext
         mSendModel.addResponseObserver(getViewLifecycleOwner(), response ->
