@@ -17,9 +17,7 @@
         tools:layout="@layout/fragment_chat_list" >
         <action
             android:id="@+id/action_navigation_chat_to_chatFragment"
-            app:destination="@id/chatFragment"
-            app:popUpTo="@id/navigation_chat"
-            app:popUpToInclusive="true"/>
+            app:destination="@id/chatFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_contacts"

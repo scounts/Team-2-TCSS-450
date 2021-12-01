@@ -15,5 +15,5 @@ public class ChatRoom implements Serializable {
 
     public String getmChatName() {return mChatName;}
 
-    public int getmChatID() {return mChatID;}
+    public int getmChatId() {return mChatID;}
 }
