@@ -22,10 +22,11 @@ import edu.uw.tcss450.team2.thermochat.databinding.FragmentChatMessageBinding;
 public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerViewAdapter.MessageViewHolder> {
 
     private final List<ChatMessage> mMessages;
-    private final String mEmail;
-    public ChatRecyclerViewAdapter(List<ChatMessage> messages, String email) {
+    private final String mUserName;
+
+    public ChatRecyclerViewAdapter(List<ChatMessage> messages, String uName) {
         this.mMessages = messages;
-        mEmail = email;
+        mUserName = uName;
     }
 
 
@@ -64,7 +65,7 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
             int standard = (int) res.getDimension(R.dimen.chat_margin);
             int extended = (int) res.getDimension(R.dimen.chat_margin_sided);
 
-            if (mEmail.equals(message.getSender())) {
+            if (mUserName.equals(message.getSender())) {
                 //This message is from the user. Format it as such
                 binding.textMessage.setText(message.getMessage());
                 ViewGroup.MarginLayoutParams layoutParams =

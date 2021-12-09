@@ -34,7 +34,6 @@ public class ContactListFragment extends Fragment {
         UserInfoViewModel model = new ViewModelProvider(getActivity())
                 .get(UserInfoViewModel.class);
 
-        Log.i("CONTACT", model.getmJwt());
         mModel.connectGet(model.getmJwt());
     }
 
@@ -44,7 +43,6 @@ public class ContactListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_contact_list, container, false);
     }
 
@@ -55,8 +53,6 @@ public class ContactListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //Local access to the ViewBinding object. No need to create as Instance Var as it is only
-        //used here.
         FragmentContactListBinding binding = FragmentContactListBinding.bind(getView());
 
         mModel.addContactListObserver(getViewLifecycleOwner(), contactList -> {
@@ -64,7 +60,6 @@ public class ContactListFragment extends Fragment {
             binding.listRoot.setAdapter(
                     new ContactRecyclerViewAdapter(contactList)
             );
-            //binding.layoutWait.setVisibility(View.GONE);
             //}
         });
     }

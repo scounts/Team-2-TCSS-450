@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team2.thermochat.ui.contacts;
+package edu.uw.tcss450.team2.thermochat.ui.weather;
 
 import android.app.Application;
 import android.util.Log;
@@ -8,7 +8,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
-
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -25,42 +24,36 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import java.util.Objects;
-import java.util.function.IntFunction;
 
-import edu.uw.tcss450.team2.thermochat.R;
+import edu.uw.tcss450.team2.thermochat.ui.contacts.Contact;
 
-/**
- * A ViewModel for a list of contacts.
- */
-public class ContactListViewModel extends AndroidViewModel {
+public class WeatherViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<Contact>> mContactList;
+    private MutableLiveData<List<Weather>> mWeatherList;
+    private MutableLiveData<Weather> mWeather;
     private final MutableLiveData<JSONObject> mResponse;
 
-    /**
-     * The constructor for the contact list view model.
-     *
-     * @param application the application.
-     */
-    public ContactListViewModel(@NonNull Application application) {
+    public WeatherViewModel(@NonNull Application application) {
         super(application);
-        mContactList = new MutableLiveData<>(new ArrayList<>());
+        mWeatherList = new MutableLiveData<>(new ArrayList<>());
+        mWeather = new MutableLiveData<Weather>();
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
     }
 
     /**
-     * Add an observer to the contact list view model.
+     * Add an observer to the weather list view model.
      *
      * @param owner the owner
      * @param observer the observer
      */
-    public void addContactListObserver(@NonNull LifecycleOwner owner,
-                                       @NonNull Observer<? super List<Contact>> observer){
-        mContactList.observe(owner, observer);
+    public void addWeatherObserver(@NonNull LifecycleOwner owner,
+                                       @NonNull Observer<? super Weather> observer){
+        mWeather.observe(owner, observer);
     }
+
+
 
     /**
      * Connects to webservice endpoint to retrieve a list of contacts.
@@ -68,7 +61,7 @@ public class ContactListViewModel extends AndroidViewModel {
      * @param jwt a valid jwt.
      */
     public void connectGet (String jwt){
-        String url = "https://team-2-tcss-450-project.herokuapp.com/contacts";
+        String url = "https://team-2-tcss-450-project.herokuapp.com/weather/current";
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -99,24 +92,34 @@ public class ContactListViewModel extends AndroidViewModel {
      */
     private void handleSuccess(final JSONObject result) {
 
-        ArrayList<Contact> temp = new ArrayList<>();
+        ArrayList<Weather> temp = new ArrayList<>();
+
         try {
-            JSONArray contacts = result.getJSONArray("contacts");
-            for (int i = 0; i < contacts.length(); i++) {
-                JSONObject contact = contacts.getJSONObject(i);
 
-                String username= contact.getString("username");
-                int memberID = contact.getInt("memberid");
+           JSONObject location = result.getJSONObject("location");
+           JSONObject temperature = result.getJSONObject("tempature");
 
-                Contact entry = new Contact(username, memberID);
-                temp.add(entry);
+           String current = temperature.getString("current_temp");
+           String city = location.getString("city");
+           String country = location.getString("country");
 
-            }
+           Weather weather = new Weather(current, city, country);
+           mWeather.setValue(weather);
+           temp.add(weather);
+
+
         } catch (JSONException e) {
-            Log.e("JSON PARSE ERROR", "Found in handle Success ContactViewModel");
+            Log.e("JSON PARSE ERROR", "Found in handle Success WeatherViewModel");
             Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
         }
-        mContactList.setValue(temp);
+
+        mWeatherList.setValue(temp);
+        //mWeatherList.
+    }
+
+    public String getCurrentWeather() {
+        return mWeather.getValue().toString();
+
     }
 
     private void handleError(final VolleyError error) {
@@ -131,4 +134,10 @@ public class ContactListViewModel extends AndroidViewModel {
                             data);
         }
     }
+
 }
+
+
+
+
+
