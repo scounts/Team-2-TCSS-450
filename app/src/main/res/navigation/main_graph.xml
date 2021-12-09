@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
@@ -9,7 +10,8 @@
         android:id="@+id/navigation_home"
         android:name="edu.uw.tcss450.team2.thermochat.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home"></fragment>
+        tools:layout="@layout/fragment_home"/>
+
     <fragment
         android:id="@+id/navigation_chat"
         android:name="edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragment"
@@ -17,15 +19,27 @@
         tools:layout="@layout/fragment_chat_list" >
         <action
             android:id="@+id/action_navigation_chat_to_chatFragment"
-            app:destination="@id/chatFragment"
-            app:popUpTo="@id/navigation_chat"
-            app:popUpToInclusive="true"/>
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_navigation_chat_to_deleteChatFragment"
+            app:destination="@id/deleteChatFragment" />
     </fragment>
+
+
     <fragment
         android:id="@+id/navigation_contacts"
         android:name="edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListFragment"
         android:label="@string/title_contacts"
-        tools:layout="@layout/fragment_contact_list" >
+        tools:layout="@layout/fragment_contact_list">
+        <action
+            android:id="@+id/action_navigation_contacts_to_addContactFragment"
+            app:destination="@id/addContactFragment" />
+        <action
+            android:id="@+id/action_navigation_contacts_to_contactRequestListFragment"
+            app:destination="@id/contactRequestListFragment" />
+        <action
+            android:id="@+id/action_navigation_contacts_to_deleteContactFragment"
+            app:destination="@id/deleteContactFragment" />
     </fragment>
 
     <fragment
@@ -33,6 +47,7 @@
         android:name="edu.uw.tcss450.team2.thermochat.ui.weather.WeatherFragment"
         android:label="@string/title_weather"
         tools:layout="@layout/fragment_weather" />
+
     <fragment
         android:id="@+id/chatFragment"
         android:name="edu.uw.tcss450.team2.thermochat.ui.chat.ChatFragment"
@@ -41,5 +56,55 @@
         <argument
             android:name="chat"
             app:argType="edu.uw.tcss450.team2.thermochat.ui.chat.ChatRoom"/>
+        <action
+            android:id="@+id/action_chatFragment_to_addContactToChatFragment"
+            app:destination="@id/addContactToChatFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/addContactFragment"
+        android:name="edu.uw.tcss450.team2.thermochat.ui.contacts.AddContactFragment"
+        android:label="AddContactFragment" />
+
+    <fragment
+        android:id="@+id/contactRequestListFragment"
+        android:name="edu.uw.tcss450.team2.thermochat.ui.contacts.ContactRequestListFragment"
+        android:label="ContactRequestListFragment" />
+
+    <fragment
+        android:id="@+id/addContactToChatFragment"
+        android:name="edu.uw.tcss450.team2.thermochat.ui.chat.AddContactToChatFragment"
+        android:label="AddContactToChatFragment">
+        <argument
+            android:name="chat"
+            app:argType="edu.uw.tcss450.team2.thermochat.ui.chat.ChatRoom"/>
+        <action
+            android:id="@+id/action_addContactToChatFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/deleteContactFragment"
+        android:name="edu.uw.tcss450.team2.thermochat.ui.contacts.DeleteContactFragment"
+        android:label="DeleteContactFragment">
+        <argument
+            android:name="Contact"
+            app:argType="edu.uw.tcss450.team2.thermochat.ui.contacts.Contact"/>
+        <action
+            android:id="@+id/action_deleteContactFragment_to_navigation_contacts"
+            app:destination="@id/navigation_contacts" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/deleteChatFragment"
+        android:name="edu.uw.tcss450.team2.thermochat.ui.chat.DeleteChatFragment"
+        android:label="DeleteChatFragment" >
+        <argument
+            android:name="chat"
+            app:argType="edu.uw.tcss450.team2.thermochat.ui.chat.ChatRoom"/>
+        <action
+            android:id="@+id/action_deleteChatFragment_to_navigation_chat"
+            app:destination="@id/navigation_chat" />
+    </fragment>
+
 </navigation>

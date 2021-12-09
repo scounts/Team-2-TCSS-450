@@ -1,6 +1,7 @@
 package edu.uw.tcss450.team2.thermochat.ui.chat;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import edu.uw.tcss450.team2.thermochat.MainActivity;
+
 import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentChatBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
@@ -27,9 +29,13 @@ public class ChatFragment extends Fragment {
     private ChatViewModel mChatModel;
     private UserInfoViewModel mUserModel;
     private ChatSendViewModel mSendModel;
+    private ChatListViewModel mChatListViewModel;
 
     private int mChatID;
     private String mChatName;
+    private ChatRoom mChat;
+
+    private View mView;
 
     public ChatFragment() {
         // Required empty public constructor
@@ -41,11 +47,14 @@ public class ChatFragment extends Fragment {
         ViewModelProvider provider = new ViewModelProvider(getActivity());
 
         ChatFragmentArgs args = ChatFragmentArgs.fromBundle(getArguments());
-        mChatID = args.getChat().getmChatID();
+        Log.d("ID", ""+args.getChat().getmChatId());
+        mChat = args.getChat();
+        mChatID = args.getChat().getmChatId();
         mChatName = args.getChat().getmChatName();
 
         mUserModel = provider.get(UserInfoViewModel.class);
         mChatModel = provider.get(ChatViewModel.class);
+        mChatListViewModel = provider.get(ChatListViewModel.class);
         mChatModel.getFirstMessages(mChatID, mUserModel.getmJwt());
         mSendModel = provider.get(ChatSendViewModel.class);
     }
@@ -54,7 +63,9 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        mView = inflater.inflate(R.layout.fragment_chat, container, false);
+
+        return mView;
     }
 
     @Override
@@ -99,7 +110,18 @@ public class ChatFragment extends Fragment {
             mSendModel.sendMessage(mChatID,
                     mUserModel.getmJwt(),
                     binding.editMessage.getText().toString());
+            //mChatModel.getNextMessages(mChatID, mUserModel.getmJwt());
         });
+
+        binding.buttonAddMembers.setOnClickListener(button-> {
+
+            ChatFragmentDirections.ActionChatFragmentToAddContactToChatFragment directions =
+                    ChatFragmentDirections.actionChatFragmentToAddContactToChatFragment(mChat);
+
+            Navigation.findNavController(mView).navigate(directions);
+
+        });
+
         //when we get the response back from the server, clear the edittext
         mSendModel.addResponseObserver(getViewLifecycleOwner(), response ->
                 binding.editMessage.setText(""));

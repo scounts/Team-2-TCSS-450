@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team2.thermochat.ui.chat;
+package edu.uw.tcss450.team2.thermochat.ui.contacts;
 
 import android.app.Application;
 import android.util.Log;
@@ -13,41 +13,49 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
-import edu.uw.tcss450.team2.thermochat.R;
-import edu.uw.tcss450.team2.thermochat.io.RequestQueueSingleton;
+public class AddContactViewModel extends AndroidViewModel {
 
-public class ChatSendViewModel extends AndroidViewModel {
-
+    private MutableLiveData<List<Contact>> mContactList;
     private final MutableLiveData<JSONObject> mResponse;
 
-    public ChatSendViewModel(@NonNull Application application) {
+    /**
+     * The constructor for the contact list view model.
+     *
+     * @param application the application.
+     */
+    public AddContactViewModel(@NonNull Application application) {
         super(application);
+        mContactList = new MutableLiveData<>(new ArrayList<>());
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
     }
 
-    public void addResponseObserver(@NonNull LifecycleOwner owner,
-                                    @NonNull Observer<? super JSONObject> observer) {
-        mResponse.observe(owner, observer);
+    public void addContactListObserver(@NonNull LifecycleOwner owner,
+                                       @NonNull Observer<? super List<Contact>> observer){
+        mContactList.observe(owner, observer);
     }
 
-    public void sendMessage(final int chatId, final String jwt, final String message) {
-        String url = getApplication().getResources().getString(R.string.base_url) +
-                "messages";
+
+    public void addContact(String jwt, String uName) {
+
+        String url = "https://team-2-tcss-450-project.herokuapp.com/contacts";
+
 
         JSONObject body = new JSONObject();
+
         try {
-            body.put("message", message);
-            body.put("chatId", chatId);
+            body.put("username", uName);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -55,10 +63,9 @@ public class ChatSendViewModel extends AndroidViewModel {
         Request request = new JsonObjectRequest(
                 Request.Method.POST,
                 url,
-                body, //push token found in the JSONObject body
-                mResponse::setValue, // we get a response but do nothing with it
+                body,
+                mResponse::setValue,
                 this::handleError) {
-
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
@@ -67,28 +74,16 @@ public class ChatSendViewModel extends AndroidViewModel {
                 return headers;
             }
         };
-
         request.setRetryPolicy(new DefaultRetryPolicy(
                 10_000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //Instantiate the RequestQueue and add the request to the queue
-        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
-                .addToRequestQueue(request);
+        Volley.newRequestQueue(getApplication().getApplicationContext())
+                .add(request);
     }
 
-
-
     private void handleError(final VolleyError error) {
-        if (Objects.isNull(error.networkResponse)) {
-            Log.e("NETWORK ERROR", error.getMessage());
-        }
-        else {
-            String data = new String(error.networkResponse.data, Charset.defaultCharset());
-            Log.e("CLIENT ERROR",
-                    error.networkResponse.statusCode +
-                            " " +
-                            data);
-        }
+        Log.e("CONNECTION ERROR", error.networkResponse.toString());
     }
 }

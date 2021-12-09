@@ -95,17 +95,6 @@ public class WeatherViewModel extends AndroidViewModel {
         ArrayList<Weather> temp = new ArrayList<>();
 
         try {
-            //JSONArray contacts = result.getJSONArray("weather");
-//            for (int i = 0; i < contacts.length(); i++) {
-//                JSONObject contact = contacts.getJSONObject(i);
-//
-//                String username= contact.getString("username");
-//                int memberID = contact.getInt("memberid");
-//
-//                Contact entry = new Contact(username, memberID);
-//                temp.add(entry);
-//
-//            }
 
            JSONObject location = result.getJSONObject("location");
            JSONObject temperature = result.getJSONObject("tempature");

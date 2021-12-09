@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentContactListBinding;
+import edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragmentDirections;
 
 
 public class ContactListFragment extends Fragment {
@@ -62,5 +64,15 @@ public class ContactListFragment extends Fragment {
             );
             //}
         });
+
+        binding.imageButtonRequestContact.setOnClickListener(button ->
+            Navigation.findNavController(getView()).navigate(
+                    ContactListFragmentDirections
+                            .actionNavigationContactsToAddContactFragment()));
+
+        binding.textViewRequestContact.setOnClickListener(button ->
+                Navigation.findNavController(getView()).navigate(
+                        ContactListFragmentDirections.
+                                actionNavigationContactsToContactRequestListFragment()));
     }
 }

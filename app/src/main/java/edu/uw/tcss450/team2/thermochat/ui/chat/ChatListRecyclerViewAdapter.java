@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,16 +13,20 @@ import java.util.List;
 
 import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentChatCardBinding;
-import edu.uw.tcss450.team2.thermochat.databinding.FragmentContactCardBinding;
+
 import edu.uw.tcss450.team2.thermochat.ui.chat.ChatRoom;
 
 public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<edu.uw.tcss450.team2.thermochat.ui.chat.ChatListRecyclerViewAdapter.ChatListViewHolder> {
+
     //Store all of the blogs to present
     private final List<ChatRoom> mChats;
 
     //Store all of the blogs to present
     public ChatListRecyclerViewAdapter(List<ChatRoom> items) {
+
         this.mChats = items;
+
+
     }
 
     @NonNull
@@ -51,7 +56,7 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<edu.uw.tcs
         public ChatRoom mChat;
 
         /**
-         * Constructore for teh contact view holder.
+         * Constructor for the contact view holder.
          *
          * @param view the view.
          */
@@ -60,10 +65,19 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<edu.uw.tcs
             mView = view;
             binding = FragmentChatCardBinding.bind(view);
 
+
+
             view.setOnClickListener(v -> {
                 ChatListFragmentDirections.ActionNavigationChatToChatFragment directions =
                         ChatListFragmentDirections.
                                 actionNavigationChatToChatFragment(mChat);
+
+                Navigation.findNavController(mView).navigate(directions);
+            });
+
+            binding.buttonDeleteChat.setOnClickListener(button -> {
+                ChatListFragmentDirections.ActionNavigationChatToDeleteChatFragment directions =
+                        ChatListFragmentDirections.actionNavigationChatToDeleteChatFragment(mChat);
 
                 Navigation.findNavController(mView).navigate(directions);
             });

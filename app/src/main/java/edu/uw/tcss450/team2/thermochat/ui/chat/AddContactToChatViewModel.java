@@ -14,6 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,41 +23,54 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.io.RequestQueueSingleton;
 
-public class ChatSendViewModel extends AndroidViewModel {
+public class AddContactToChatViewModel extends AndroidViewModel {
 
     private final MutableLiveData<JSONObject> mResponse;
 
-    public ChatSendViewModel(@NonNull Application application) {
+    public AddContactToChatViewModel(@NonNull Application application) {
         super(application);
+
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
     }
 
+    /**
+     * Adds a response to the view model.
+     *
+     * @param owner
+     * @param observer
+     */
     public void addResponseObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super JSONObject> observer) {
         mResponse.observe(owner, observer);
     }
 
-    public void sendMessage(final int chatId, final String jwt, final String message) {
-        String url = getApplication().getResources().getString(R.string.base_url) +
-                "messages";
+
+    /**
+     * A method connecting to a webservice endpoint for adding users to a chat room
+     * @param jwt a valid jwt
+     * @param chatID a valid chat ID
+     * @param memberID the users member id
+     */
+    public void putMembers(final String jwt, int chatID, int memberID) {
+        String url = "https://team-2-tcss-450-project.herokuapp.com/chats/?chatnum=" + chatID + "/?membernum=" + memberID;
+
 
         JSONObject body = new JSONObject();
         try {
-            body.put("message", message);
-            body.put("chatId", chatId);
+            body.put("chatnum", chatID);
+            body.put("membernum" , memberID);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         Request request = new JsonObjectRequest(
-                Request.Method.POST,
+                Request.Method.PUT,
                 url,
-                body, //push token found in the JSONObject body
-                mResponse::setValue, // we get a response but do nothing with it
+                body,
+                mResponse::setValue,
                 this::handleError) {
 
             @Override
@@ -77,18 +91,30 @@ public class ChatSendViewModel extends AndroidViewModel {
                 .addToRequestQueue(request);
     }
 
-
-
+    /**
+     * handles errors with connecting the the webservice.
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
-            Log.e("NETWORK ERROR", error.getMessage());
+            try {
+                mResponse.setValue(new JSONObject("{" +
+                        "error:\"" + error.getMessage() +
+                        "\"}"));
+            } catch (JSONException e) {
+                Log.e("JSON PARSE", "JSON Parse Error in NCVM");
+            }
         }
         else {
-            String data = new String(error.networkResponse.data, Charset.defaultCharset());
-            Log.e("CLIENT ERROR",
-                    error.networkResponse.statusCode +
-                            " " +
-                            data);
+            String data = new String(error.networkResponse.data, Charset.defaultCharset())
+                    .replace('\"', '\'');
+            try {
+                mResponse.setValue(new JSONObject("{" +
+                        "code:" + error.networkResponse.statusCode +
+                        ", data:\"" + data +
+                        "\"}"));
+            } catch (JSONException e) {
+                Log.e("JSON PARSE", "JSON Parse Error in NCVM");
+            }
         }
     }
 }
