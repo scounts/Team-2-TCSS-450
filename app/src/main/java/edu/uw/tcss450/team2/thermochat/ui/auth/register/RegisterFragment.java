@@ -46,6 +46,9 @@ public class RegisterFragment extends Fragment {
                     .and(checkPwdDigit())
                     .and(checkPwdLowerCase().or(checkPwdUpperCase()));
 
+    /**
+     * An empty constructor to generate the fragment.
+     */
     public RegisterFragment() {
         // Required empty public constructor
     }

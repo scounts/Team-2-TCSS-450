@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
+import androidx.navigation.Navigation;
 
 
 import org.json.JSONException;
@@ -34,6 +34,7 @@ public class AddContactToChatFragment extends Fragment {
     private FragmentAddContactToChatBinding binding;
     private int mChatID;
     private String mTitle;
+    private ChatRoom mChat;
 
     public AddContactToChatFragment(){
 
@@ -44,6 +45,7 @@ public class AddContactToChatFragment extends Fragment {
         super.onCreate(savedInstanceState);
         ViewModelProvider provider = new ViewModelProvider(getActivity());
         AddContactToChatFragmentArgs args = AddContactToChatFragmentArgs.fromBundle(getArguments());
+        mChat = args.getChat();
         mChatID = args.getChat().getmChatId();
 
 //        ((MainActivity) getActivity())
@@ -83,9 +85,9 @@ public class AddContactToChatFragment extends Fragment {
                 this::observeResponse);
 
 
-//        binding.buttonCancel.setOnClickListener(button -> Navigation.findNavController(getView())
-//                .navigate(AddContactToChatFragmentDirections
-//                        .actionAddContactToChatFragmentToChatFragment(mChatID, mTitle)));
+        binding.buttonCancel.setOnClickListener(button -> Navigation.findNavController(getView())
+                .navigate(AddContactToChatFragmentDirections
+                        .actionAddContactToChatFragmentToChatFragment(mChat)));
 
         binding.buttonAdd.setOnClickListener(button -> {
             try {
