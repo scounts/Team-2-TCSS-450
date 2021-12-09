@@ -109,7 +109,7 @@ public class WeatherViewModel extends AndroidViewModel {
 
 
         } catch (JSONException e) {
-            Log.e("JSON PARSE ERROR", "Found in handle Success WeatherViewModel");
+            Log.e("JSON PARSE ERROR", "Found in handle Success HomeWeatherViewModel");
             Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
         }
 
