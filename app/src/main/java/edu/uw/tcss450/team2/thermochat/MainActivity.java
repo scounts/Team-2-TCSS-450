@@ -22,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import edu.uw.tcss450.team2.thermochat.databinding.ActivityMainBinding;
 import edu.uw.tcss450.team2.thermochat.model.NewMessageCountViewModel;
+import edu.uw.tcss450.team2.thermochat.model.PushyTokenViewModel;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 import edu.uw.tcss450.team2.thermochat.services.PushReceiver;
 import edu.uw.tcss450.team2.thermochat.ui.chat.ChatMessage;
@@ -131,6 +132,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.drop_down, menu);
         return true;
@@ -152,7 +160,15 @@ public class MainActivity extends AppCompatActivity {
                         Context.MODE_PRIVATE);
         prefs.edit().remove(getString(R.string.keys_prefs_jwt)).apply();
         //End the app completely
-        finishAndRemoveTask();
+        PushyTokenViewModel model = new ViewModelProvider(this)
+                .get(PushyTokenViewModel.class);
+        //when we hear back from the web service quit
+        model.addResponseObserver(this, result -> finishAndRemoveTask());
+        model.deleteTokenFromWebService(
+                new ViewModelProvider(this)
+                        .get(UserInfoViewModel.class)
+                        .getmJwt()
+        );
     }
 
 }

@@ -68,7 +68,7 @@ public class AddContactToChatRecycleViewAdapter extends RecyclerView.Adapter<Add
         public int memberID;
 
         /**
-         * Constructore for the contact view holder.
+         * Constructor for the contact view holder.
          *
          * @param view the view.
          */

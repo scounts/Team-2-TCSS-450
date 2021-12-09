@@ -75,9 +75,12 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<edu.uw.tcs
                 Navigation.findNavController(mView).navigate(directions);
             });
 
-//            view.setOnLongClickListener(v -> {
-//
-//            });
+            binding.buttonDeleteChat.setOnClickListener(button -> {
+                ChatListFragmentDirections.ActionNavigationChatToDeleteChatFragment directions =
+                        ChatListFragmentDirections.actionNavigationChatToDeleteChatFragment(mChat);
+
+                Navigation.findNavController(mView).navigate(directions);
+            });
 
         }
 

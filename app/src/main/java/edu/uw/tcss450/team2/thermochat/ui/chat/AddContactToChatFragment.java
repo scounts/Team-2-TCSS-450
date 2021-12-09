@@ -27,7 +27,6 @@ import edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListViewModel;
 
 public class AddContactToChatFragment extends Fragment {
 
-
     private ContactListViewModel mContactModel;
     private AddContactToChatRecycleViewAdapter mAdapter;
     private AddContactToChatViewModel mAddModel;
@@ -103,10 +102,9 @@ public class AddContactToChatFragment extends Fragment {
      */
     private void handleAddContacts() throws JSONException {
         ArrayList<Integer> selectedContacts = mAdapter.getSelected();
-//        int[] temp = new int[selectedContacts.size()];
+
 
         for(int i = 0 ; i < selectedContacts.size(); i++){
-//            temp[i] = selectedContacts.get(i);
             mAddModel.putMembers(mUserInfoModel.getmJwt(), mChatID, selectedContacts.get(i));
             mAdapter.notifyDataSetChanged();
         }
@@ -142,4 +140,5 @@ public class AddContactToChatFragment extends Fragment {
             Log.d("JSON Response", "No Response");
         }
     }
+
 }

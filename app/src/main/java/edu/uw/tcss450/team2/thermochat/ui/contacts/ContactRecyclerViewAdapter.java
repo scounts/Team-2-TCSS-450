@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -76,7 +77,10 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
             binding.cardRoot.setVisibility(View.VISIBLE);
 
             binding.buttonDeleteContact.setOnClickListener(button -> {
-
+                ContactListFragmentDirections.ActionNavigationContactsToDeleteContactFragment
+                        directions = ContactListFragmentDirections.
+                        actionNavigationContactsToDeleteContactFragment(mContact);
+                Navigation.findNavController(mView).navigate(directions);
             });
         }
 

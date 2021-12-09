@@ -51,11 +51,11 @@ public class AddContactToChatViewModel extends AndroidViewModel {
     /**
      * A method connecting to a webservice endpoint for adding users to a chat room
      * @param jwt a valid jwt
-     * @param memberID the users member id
      * @param chatID a valid chat ID
+     * @param memberID the users member id
      */
     public void putMembers(final String jwt, int chatID, int memberID) {
-        String url = "https://team-2-tcss-450-project.herokuapp.com/chats/" + chatID + "/" + memberID;
+        String url = "https://team-2-tcss-450-project.herokuapp.com/chats/?chatnum=" + chatID + "/?membernum=" + memberID;
 
 
         JSONObject body = new JSONObject();
@@ -65,12 +65,11 @@ public class AddContactToChatViewModel extends AndroidViewModel {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(body.toString());
 
         Request request = new JsonObjectRequest(
                 Request.Method.PUT,
                 url,
-                body, //push token found in the JSONObject body
+                body,
                 mResponse::setValue,
                 this::handleError) {
 
@@ -94,7 +93,6 @@ public class AddContactToChatViewModel extends AndroidViewModel {
 
     /**
      * handles errors with connecting the the webservice.
-     * @param error
      */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {

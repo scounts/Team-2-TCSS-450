@@ -88,7 +88,7 @@ public class ContactRequestListViewModel extends AndroidViewModel {
 
         ArrayList<Contact> temp = new ArrayList<>();
         try {
-            JSONArray contacts = result.getJSONArray("contactsReq");
+            JSONArray contacts = result.getJSONArray("contactReqs");
             for (int i = 0; i < contacts.length(); i++) {
                 JSONObject contact = contacts.getJSONObject(i);
 

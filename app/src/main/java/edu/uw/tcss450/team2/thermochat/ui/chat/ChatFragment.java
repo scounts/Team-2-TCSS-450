@@ -110,7 +110,7 @@ public class ChatFragment extends Fragment {
             mSendModel.sendMessage(mChatID,
                     mUserModel.getmJwt(),
                     binding.editMessage.getText().toString());
-            mChatModel.getNextMessages(mChatID, mUserModel.getmJwt());
+            //mChatModel.getNextMessages(mChatID, mUserModel.getmJwt());
         });
 
         binding.buttonAddMembers.setOnClickListener(button-> {

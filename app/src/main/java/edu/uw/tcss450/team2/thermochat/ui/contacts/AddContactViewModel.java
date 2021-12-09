@@ -46,51 +46,6 @@ public class AddContactViewModel extends AndroidViewModel {
         mContactList.observe(owner, observer);
     }
 
-    public void connectGet (String jwt, int memberID){
-        String url = "https://mobile-app-spring-2020.herokuapp.com/contacts";
-        Request request = new JsonObjectRequest(
-                Request.Method.GET,
-                url,
-                null, //no body for this get request
-                this::handleSuccess,
-                this::handleError) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                // add headers <key,value>
-                headers.put("Authorization", jwt);
-                return headers;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                10_000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        //Instantiate the RequestQueue and add the request to the queue
-        Volley.newRequestQueue(getApplication().getApplicationContext())
-                .add(request);
-    }
-
-    private void handleSuccess(final JSONObject result) {
-        ArrayList<Contact> temp = new ArrayList<>();
-        try {
-            JSONArray contacts = result.getJSONArray("listOfUnFriend");
-            for (int i = 0; i < contacts.length(); i++) {
-                JSONObject contact = contacts.getJSONObject(i);
-                JSONObject currUser = contact.getJSONObject("entry");
-                String uName= currUser.getString("username");
-                int memberID = currUser.getInt("memberid");
-
-                Contact entry = new Contact( uName, memberID);
-                temp.add(entry);
-            }
-        } catch (JSONException e) {
-            Log.e("JSON PARSE ERROR", "Found in handle Success ContactViewModel");
-            Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
-        }
-        mContactList.setValue(temp);
-    }
-
 
     public void addContact(String jwt, String uName) {
 
@@ -101,7 +56,6 @@ public class AddContactViewModel extends AndroidViewModel {
 
         try {
             body.put("username", uName);
-//            body.put("verified", 0);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -130,6 +84,6 @@ public class AddContactViewModel extends AndroidViewModel {
     }
 
     private void handleError(final VolleyError error) {
-        Log.e("CONNECTION ERROR", "Oops no contacts");
+        Log.e("CONNECTION ERROR", error.networkResponse.toString());
     }
 }

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import java.util.ArrayList;
 
@@ -25,11 +26,17 @@ public class DeleteContactFragment extends Fragment {
 
     private FragmentDeleteContactBinding binding;
 
-    private ArrayList<String> userNames;
+    private DeleteContactFragmentArgs args;
+
+    private int mUserID;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        args = DeleteContactFragmentArgs.fromBundle(getArguments());
+
+        mUserID = args.getContact().getContactMemberID();
 
         mUserModel = new ViewModelProvider(getActivity())
                 .get(UserInfoViewModel.class);
@@ -52,11 +59,17 @@ public class DeleteContactFragment extends Fragment {
         binding = FragmentDeleteContactBinding.bind(getView());
 
         binding.buttonYes.setOnClickListener(button -> {
-            mModel.deleteContact(mUserModel.getmJwt(),
+            mModel.deleteContact(mUserModel.getmJwt(), mUserID);
+
+            Navigation.findNavController(getView()).navigate(
+                    DeleteContactFragmentDirections.
+                            actionDeleteContactFragmentToNavigationContacts());
         });
 
         binding.buttonNo.setOnClickListener(button -> {
-
+            Navigation.findNavController(getView()).navigate(
+                    DeleteContactFragmentDirections.
+                            actionDeleteContactFragmentToNavigationContacts());
         });
 
     }
