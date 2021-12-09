@@ -74,6 +74,10 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
             binding.textContactName.setText(contactName);
 
             binding.cardRoot.setVisibility(View.VISIBLE);
+
+            binding.buttonDeleteContact.setOnClickListener(button -> {
+
+            });
         }
 
     }

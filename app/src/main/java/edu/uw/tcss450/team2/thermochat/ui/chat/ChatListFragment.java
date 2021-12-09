@@ -27,6 +27,8 @@ public class ChatListFragment extends Fragment {
 
     private ChatListViewModel mModel;
     private ChatListRecyclerViewAdapter mAdapter;
+    private FragmentChatListBinding binding;
+    private UserInfoViewModel model;
 
     public ChatListFragment() {
         // Required empty public constructor
@@ -37,7 +39,7 @@ public class ChatListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity()).get(ChatListViewModel.class);
 
-        UserInfoViewModel model = new ViewModelProvider(getActivity())
+        model = new ViewModelProvider(getActivity())
                 .get(UserInfoViewModel.class);
 
         mModel.connectGet(model.getmJwt());
@@ -59,7 +61,11 @@ public class ChatListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FragmentChatListBinding binding = FragmentChatListBinding.bind(getView());
+        binding = FragmentChatListBinding.bind(getView());
+
+        binding.imageButtonAddChat.setOnClickListener(button ->{
+            createChat();
+        } );
 
         mModel.addChatListObserver(getViewLifecycleOwner(), chatList -> {
             //if (!chatList.isEmpty()) {
@@ -68,9 +74,17 @@ public class ChatListFragment extends Fragment {
             );
             //}
         });
-//        binding.imageButtonRequestContact.setOnClickListener(button ->
-//                Navigation.findNavController(getView()).navigate(
-//                        ChatListFragmentDirections
-//                                .actionNavigationChatToChatFragment()));
+    }
+
+    /**
+     * creating chat room with title that user typed
+     */
+    private void createChat() {
+        String title = binding.textViewChatTitle.getText().toString().trim();
+        if(title.length() < 2){
+            binding.textViewChatTitle.setError("Please enter a valid chat room name");
+        }else{
+            mModel.addChat(model.getmJwt(), title);
+        }
     }
 }

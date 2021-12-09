@@ -2,6 +2,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit_first_message_hint">Enter a message</string>
     <string name="button_first_send">Send</string>
+    <string name="switch_sign_in">Stay Signed In</string>
+    <string name="keys_shared_prefs">My Auth App Shared Prefs</string>
+    <string name="keys_prefs_jwt">Sharded Prefs JWT</string>
+    <string name="action_sign_out">Sign Out</string>
 
     <string name="hint_first">First Name</string>
     <string name="hint_last">Last Name</string>
@@ -9,6 +13,8 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_password_again">Retype Password</string>
+    <string name="hint_add_contact">Enter Username here</string>
+    <string name="hint_search">Search</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_register_short">Register</string>
 

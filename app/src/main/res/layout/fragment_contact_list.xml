@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_root"
@@ -11,14 +12,12 @@
         android:layout_width="258dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-
-
         android:layout_marginTop="36dp"
         android:hint="Find Contact"
         android:textColor="@color/light_gray"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton_addContact"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton_search"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +38,7 @@
         tools:listitem="@layout/fragment_contact_card" />
 
     <ImageButton
-        android:id="@+id/imageButton_addContact"
+        android:id="@+id/imageButton_search"
         android:layout_width="96dp"
         android:layout_height="32dp"
         android:layout_marginEnd="8dp"
@@ -47,31 +46,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView_addContact" />
 
-    <TextView
+    <Button
         android:id="@+id/textView_requestContact"
         android:layout_width="258dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
         android:background="?colorPrimary"
         android:text="Requests"
         android:textAlignment="center"
         android:textColor="@color/light_gray"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton_requestContact"
-        app:layout_constraintHorizontal_bias="0.368"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_addContact" />
 
-    <ImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/imageButton_requestContact"
-        android:layout_width="72dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_requestContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView_requestContact"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.887"
         app:srcCompat="@drawable/ic__contact_add_black_24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,20 +25,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import edu.uw.tcss450.team2.thermochat.R;
+import edu.uw.tcss450.team2.thermochat.io.RequestQueueSingleton;
+import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 import edu.uw.tcss450.team2.thermochat.ui.contacts.Contact;
 
 
 /**
- * A ViewModel for a list of contacts.
+ * A ViewModel for a list of chats.
  */
 public class ChatListViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<ChatRoom>> mChatList;
     private final MutableLiveData<JSONObject> mResponse;
+    private UserInfoViewModel mUserModel;
 
 
     /**
-     * The constructor for the contact list view model.
+     * The constructor for the chat list view model.
      *
      * @param application the application.
      */
@@ -50,7 +54,7 @@ public class ChatListViewModel extends AndroidViewModel {
     }
 
     /**
-     * Add an observer to the contact list view model.
+     * Add an observer to the chat list view model.
      *
      * @param owner the owner
      * @param observer the observer
@@ -66,7 +70,7 @@ public class ChatListViewModel extends AndroidViewModel {
      * @param jwt a valid jwt.
      */
     public void connectGet (String jwt){
-        String url = "https://team-2-tcss-450-project.herokuapp.com/memberchats";
+        String url = getApplication().getResources().getString(R.string.base_url) + "memberchats";
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -115,7 +119,147 @@ public class ChatListViewModel extends AndroidViewModel {
     }
 
     private void handleError(final VolleyError error) {
-        Log.e("CONNECTION ERROR", "Oooops no chats");
+        Log.e("CONNECTION ERROR", "Oops no chats");
         //throw new IllegalStateException(error.getMessage());
+    }
+
+    public void addChat(final String jwt, final String name) {
+        String url = getApplication().getResources().getString(R.string.base_url) + "chats";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("name", name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Request request = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                body, //push token found in the JSONObject body
+                response -> handleAdd(jwt, response),
+                this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", jwt);
+                return headers;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
+
+    public void deleteChat(final int chatId) {
+        String url = getApplication().getResources().getString(R.string.base_url) + "chats/"
+                + chatId + "/" + mUserModel.getEmail();
+
+        Request request = new JsonObjectRequest(
+                Request.Method.DELETE,
+                url,
+                null,
+                mResponse::setValue,
+                this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", mUserModel.getmJwt());
+                return headers;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
+
+    public void addMembers(final String jwt, int chatID) {
+        String url = getApplication().getResources().getString(R.string.base_url) + "chats/" + chatID;
+
+        JSONObject body = new JSONObject();
+
+        try {
+            body.put("chatid", chatID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println(body.toString());
+
+        Request request = new JsonObjectRequest(
+                Request.Method.PUT,
+                url,
+                body, //push token found in the JSONObject body
+                mResponse::setValue,
+                this::handleError) {
+
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", jwt);
+                return headers;
+            }
+        };
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
+                .addToRequestQueue(request);
+    }
+
+    public void addOtherMembers(final String jwt, int chatID, String userName) {
+        String url = getApplication().getResources().getString(R.string.base_url) + "chats/" + chatID + "/" + userName;
+
+        JSONObject body = new JSONObject();
+
+        try {
+            body.put("chatid", chatID);
+            body.put("username" , userName);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println(body.toString());
+
+        Request request = new JsonObjectRequest(
+                Request.Method.PUT,
+                url,
+                body, //push token found in the JSONObject body
+                mResponse::setValue,
+                this::handleError) {
+
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", jwt);
+                return headers;
+            }
+        };
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
+                .addToRequestQueue(request);
+    }
+
+    private void handleAdd(final String jwt, final JSONObject response) {
+        try {
+            int chatID = response.getInt("chatID");
+            addMembers(jwt, chatID);
+            connectGet(jwt);
+        } catch (JSONException e) {
+            Log.e("JSON PARSE ERROR", "Found in handle Success ChatViewModel");
+            Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
+        }
     }
 }

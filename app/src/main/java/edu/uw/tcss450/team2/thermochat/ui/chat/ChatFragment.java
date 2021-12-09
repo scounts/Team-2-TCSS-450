@@ -10,9 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import edu.uw.tcss450.team2.thermochat.MainActivity;
+
 import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentChatBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
@@ -32,6 +33,9 @@ public class ChatFragment extends Fragment {
 
     private int mChatID;
     private String mChatName;
+    private ChatRoom mChat;
+
+    private View mView;
 
     public ChatFragment() {
         // Required empty public constructor
@@ -44,6 +48,7 @@ public class ChatFragment extends Fragment {
 
         ChatFragmentArgs args = ChatFragmentArgs.fromBundle(getArguments());
         Log.d("ID", ""+args.getChat().getmChatId());
+        mChat = args.getChat();
         mChatID = args.getChat().getmChatId();
         mChatName = args.getChat().getmChatName();
 
@@ -58,7 +63,9 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        mView = inflater.inflate(R.layout.fragment_chat, container, false);
+
+        return mView;
     }
 
     @Override
@@ -100,13 +107,21 @@ public class ChatFragment extends Fragment {
 
         //Send button was clicked. Send the message via the SendViewModel
         binding.buttonSend.setOnClickListener(button -> {
-            Log.d("MESSAGING", "Made it here Before");
             mSendModel.sendMessage(mChatID,
                     mUserModel.getmJwt(),
                     binding.editMessage.getText().toString());
             mChatModel.getNextMessages(mChatID, mUserModel.getmJwt());
-            Log.d("MESSAGING", "Made it here After");
         });
+
+        binding.buttonAddMembers.setOnClickListener(button-> {
+
+            ChatFragmentDirections.ActionChatFragmentToAddContactToChatFragment directions =
+                    ChatFragmentDirections.actionChatFragmentToAddContactToChatFragment(mChat);
+
+            Navigation.findNavController(mView).navigate(directions);
+
+        });
+
         //when we get the response back from the server, clear the edittext
         mSendModel.addResponseObserver(getViewLifecycleOwner(), response ->
                 binding.editMessage.setText(""));
