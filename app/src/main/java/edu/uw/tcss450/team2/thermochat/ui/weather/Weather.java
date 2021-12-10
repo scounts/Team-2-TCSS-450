@@ -1,5 +1,7 @@
 package edu.uw.tcss450.team2.thermochat.ui.weather;
 
+import android.util.EventLogTags;
+
 public class Weather {
 
 
@@ -7,15 +9,13 @@ public class Weather {
     private String mCity;
     private String mCountry;
     private String mDescription;
-    private String mIcon;
 
 
-    public Weather(String Current, String City, String Country, String Description, String Icon) {
+    public Weather(String Current, String City, String Country) {
         mCurrent = Current;
         mCity = City;
         mCountry = Country;
-        mDescription = Description;
-        mIcon = Icon;
+        //mDescription = Description;
 
     }
 
@@ -31,14 +31,10 @@ public class Weather {
         return mCountry;
     }
 
-    public String getDescription() { return mDescription; }
-
-    public String getIcon() { return mIcon; }
-
 
     @Override
     public String toString() {
-        return mCity + '\n' + mCurrent + '\n' + mDescription;
-                //+ '\n' + mIcon;
+        return mCity + ", " + mCountry + '\n' +
+                mCurrent;
     }
 }

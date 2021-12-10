@@ -1,6 +1,7 @@
 package edu.uw.tcss450.team2.thermochat.ui.weather;
 
 import android.app.Application;
+import android.util.EventLogTags;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -112,7 +113,7 @@ public class WeatherViewModel extends AndroidViewModel {
 
 
         } catch (JSONException e) {
-            Log.e("JSON PARSE ERROR", "Found in handle Success HomeWeatherViewModel");
+            Log.e("JSON PARSE ERROR", "Found in handle Success WeatherViewModel");
             Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
         }
 

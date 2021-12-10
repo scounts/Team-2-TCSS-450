@@ -56,7 +56,7 @@ public class WeatherFragment extends Fragment {
         mModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
         //mModel.
         mModel.addWeatherObserver(getViewLifecycleOwner(), weather ->
-                binding.weatherCondition.setText("" + mModel.getCurrentWeather()));
+                binding.temp.setText("" + mModel.getCurrentWeather()));
 
     }
 
