@@ -27,11 +27,23 @@ import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.io.RequestQueueSingleton;
 import me.pushy.sdk.Pushy;
 
+
+/**
+ * Pushy Token View Model used to observe and utilize data
+ * from all fragments
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
 public class PushyTokenViewModel extends AndroidViewModel{
 
     private final MutableLiveData<String> mPushyToken;
     private final MutableLiveData<JSONObject> mResponse;
 
+    /**
+     * Constructor for the View Model
+     * @param application The application utilizing the View Model
+     */
     public PushyTokenViewModel(@NonNull Application application) {
         super(application);
         mPushyToken = new MutableLiveData<>();
@@ -42,6 +54,7 @@ public class PushyTokenViewModel extends AndroidViewModel{
 
     /**
      * Register as an observer to listen for the PushToken.
+     *
      * @param owner the fragments lifecycle owner
      * @param observer the observer
      */
@@ -50,11 +63,21 @@ public class PushyTokenViewModel extends AndroidViewModel{
         mPushyToken.observe(owner, observer);
     }
 
+
+    /**
+     * Register as an observer to listen for the response.
+     *
+     * @param owner the fragments lifecycle owner
+     * @param observer the observer
+     */
     public void addResponseObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super JSONObject> observer) {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * Retrieves the Pushy token
+     */
     public void retrieveToken() {
         if (!Pushy.isRegistered(getApplication().getApplicationContext())) {
 
@@ -101,7 +124,8 @@ public class PushyTokenViewModel extends AndroidViewModel{
 
     /**
      * Send this Pushy device token to the web service.
-     * @param jwt
+     *
+     * @param jwt The Java web Token being utilized
      * @throws IllegalStateException when this method is called before the token is retrieve
      */
     public void sendTokenToWebservice(final String jwt) {
@@ -144,6 +168,11 @@ public class PushyTokenViewModel extends AndroidViewModel{
                 .addToRequestQueue(request);
     }
 
+    /**
+     * Handles errors recieved from failed server credential authentication
+     *
+     * @param error The error message
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             try {
@@ -167,6 +196,11 @@ public class PushyTokenViewModel extends AndroidViewModel{
         }
     }
 
+    /**
+     * Deletes the Pushy device token from the web service.
+     *
+     * @param jwt
+     */
     public void deleteTokenFromWebService(final String jwt) {
         String url = getApplication().getResources().getString(R.string.base_url) +
                 "auth";

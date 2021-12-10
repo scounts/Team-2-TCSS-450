@@ -14,6 +14,12 @@ import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.CardAddContactToChatBinding;
 import edu.uw.tcss450.team2.thermochat.ui.contacts.Contact;
 
+/**
+ * The RecyclerView for the AddContactToChat fragment
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
 public class AddContactToChatRecycleViewAdapter extends RecyclerView.Adapter<AddContactToChatRecycleViewAdapter.AddContactToChatViewHolder> {
 
     private final List<Contact> mContacts;
@@ -29,6 +35,11 @@ public class AddContactToChatRecycleViewAdapter extends RecyclerView.Adapter<Add
         this.mMemberID = new ArrayList<>();
     }
 
+    /**
+     * Returns the list of selected contacts to be added to the chat.
+     *
+     * @return mMemberID
+     */
     public ArrayList<Integer> getSelected(){
         return mMemberID;
     }
@@ -59,7 +70,10 @@ public class AddContactToChatRecycleViewAdapter extends RecyclerView.Adapter<Add
 
 
     /**
-     * An inner class which hold the view for a contact.
+     * An inner class which holds the view for a contact.
+     *
+     * @author Sierra C
+     * @version Dec. 2021
      */
     public class AddContactToChatViewHolder extends RecyclerView.ViewHolder {
 

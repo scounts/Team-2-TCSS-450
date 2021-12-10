@@ -32,7 +32,7 @@ import java.util.function.IntFunction;
 import edu.uw.tcss450.team2.thermochat.R;
 
 /**
- * A ViewModel for a list of contacts.
+ * A ViewModel for a list of the users contacts.
  */
 public class ContactListViewModel extends AndroidViewModel {
 
@@ -92,11 +92,6 @@ public class ContactListViewModel extends AndroidViewModel {
                 .add(request);
     }
 
-    /**
-     * Handles a successful connection with the webservice.
-     *
-     * @param result result from webservice.
-     */
     private void handleSuccess(final JSONObject result) {
 
         ArrayList<Contact> temp = new ArrayList<>();

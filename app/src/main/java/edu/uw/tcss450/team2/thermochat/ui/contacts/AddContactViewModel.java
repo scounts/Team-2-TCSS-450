@@ -24,6 +24,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The ViewModel for the fragment that adds contacts
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
 public class AddContactViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Contact>> mContactList;
@@ -41,12 +47,12 @@ public class AddContactViewModel extends AndroidViewModel {
         mResponse.setValue(new JSONObject());
     }
 
-    public void addContactListObserver(@NonNull LifecycleOwner owner,
-                                       @NonNull Observer<? super List<Contact>> observer){
-        mContactList.observe(owner, observer);
-    }
-
-
+    /**
+     * Conntect to the webservice endpoint to add a contact connection
+     *
+     * @param jwt The users jwt
+     * @param uName The username of the person being sent the request
+     */
     public void addContact(String jwt, String uName) {
 
         String url = "https://team-2-tcss-450-project.herokuapp.com/contacts";

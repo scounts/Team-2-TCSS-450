@@ -24,7 +24,12 @@ import edu.uw.tcss450.team2.thermochat.databinding.FragmentAddContactToChatBindi
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 import edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListViewModel;
 
-
+/**
+ * A Fragment to handle adding contacts to the associated chat room.
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
 public class AddContactToChatFragment extends Fragment {
 
     private ContactListViewModel mContactModel;
@@ -36,6 +41,9 @@ public class AddContactToChatFragment extends Fragment {
     private String mTitle;
     private ChatRoom mChat;
 
+    /**
+     * An empty constructor to instantiate the fragment
+     */
     public AddContactToChatFragment(){
 
     }
@@ -74,11 +82,10 @@ public class AddContactToChatFragment extends Fragment {
         binding = FragmentAddContactToChatBinding.bind(getView());
 
         mContactModel.addContactListObserver(getViewLifecycleOwner(), contactList -> {
-            //if (!contactList.isEmpty()) {
+
             mAdapter = new AddContactToChatRecycleViewAdapter(contactList);
             binding.listRoot.setAdapter(mAdapter);
-            //binding.layoutWait.setVisibility(View.GONE);
-            //}
+
         });
 
         mAddModel.addResponseObserver(getViewLifecycleOwner(),
@@ -99,23 +106,18 @@ public class AddContactToChatFragment extends Fragment {
     }
 
     /**
-     * HAndles adding a contact to the chat room
+     * Handles adding a contact to the chat room
+     *
      * @throws JSONException
      */
     private void handleAddContacts() throws JSONException {
-        ArrayList<Integer> selectedContacts = mAdapter.getSelected();
 
+        ArrayList<Integer> selectedContacts = mAdapter.getSelected();
 
         for(int i = 0 ; i < selectedContacts.size(); i++){
             mAddModel.putMembers(mUserInfoModel.getmJwt(), mChatID, selectedContacts.get(i));
             mAdapter.notifyDataSetChanged();
         }
-
-//        mAddModel.putMembers(mUserInfoModel.getmJwt(), temp, mChatID);
-//        mAdapter.notifyDataSetChanged();
-//        Navigation.findNavController(getView())
-//                .navigate(AddContactToChatFragmentDirections
-//                        .actionAddContactToChatFragmentToChatFragment(mChatID, mTitle));
     }
 
     /**

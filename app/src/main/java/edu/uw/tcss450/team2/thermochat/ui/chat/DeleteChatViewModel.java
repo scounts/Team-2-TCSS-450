@@ -21,11 +21,21 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * The ViewModel for removing the user form a chat room.
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
 public class DeleteChatViewModel extends AndroidViewModel {
 
     private final MutableLiveData<JSONObject> mResponse;
 
-
+    /**
+     * The constructor for the ViewModel
+     *
+     * @param application
+     */
     public DeleteChatViewModel(@NonNull Application application) {
         super(application);
 
@@ -34,7 +44,13 @@ public class DeleteChatViewModel extends AndroidViewModel {
     }
 
 
-
+    /**
+     * Connects to the web service to delete a chat room
+     *
+     * @param jwt the users jwt
+     * @param chatID the ID of the chat being deleted
+     * @param email The email of the user leaving the chat room
+     */
     public void connectDelete(String jwt, int chatID, String email){
         String url = "https://team-2-tcss-450-project.herokuapp.com/chats/" + chatID + "/" + email;
 

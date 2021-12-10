@@ -1,6 +1,5 @@
 package edu.uw.tcss450.team2.thermochat.ui.contacts;
 
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,11 +15,19 @@ import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentContactRequestsBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 
-
+/**
+ * A fragment to display the list of the users contact requests.
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
 public class ContactRequestListFragment extends Fragment {
 
     private ContactRequestListViewModel mModel;
 
+    /**
+     * An empty constructor to instantiate the fragment
+     */
     public ContactRequestListFragment() {
         // Required empty public constructor
     }
@@ -36,10 +43,6 @@ public class ContactRequestListFragment extends Fragment {
         mModel.connectGet(model.getmJwt());
     }
 
-
-    /**
-     * Inflates the container for the fragment.
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,9 +50,6 @@ public class ContactRequestListFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_contact_requests, container, false);
     }
 
-    /**
-     * Creates an instance of the fragment for when the user returns to it.
-     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

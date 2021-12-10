@@ -19,11 +19,19 @@ import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentContactListBinding;
 import edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragmentDirections;
 
-
+/**
+ * A fragment that displays a list of the users verified contacts
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
 public class ContactListFragment extends Fragment {
 
     private ContactListViewModel mModel;
 
+    /**
+     * An empty cinstructor to instantiate the fragment.
+     */
     public ContactListFragment() {
         // Required empty public constructor
     }
