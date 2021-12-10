@@ -1,6 +1,7 @@
 package edu.uw.tcss450.team2.thermochat.ui.weather;
 
 import android.app.Application;
+import android.util.EventLogTags;
 import android.util.Log;
 
 import androidx.annotation.NonNull;

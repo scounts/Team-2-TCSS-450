@@ -1,21 +1,17 @@
-package edu.uw.tcss450.team2.thermochat.ui.weather;
+package edu.uw.tcss450.team2.thermochat.ui.home;
 
-import android.util.EventLogTags;
-
-public class Weather {
+public class HomeWeather {
 
 
     private String mCurrent;
     private String mCity;
     private String mCountry;
-    private String mDescription;
 
 
-    public Weather(String Current, String City, String Country) {
+    public HomeWeather(String Current, String City, String Country) {
         mCurrent = Current;
         mCity = City;
         mCountry = Country;
-        //mDescription = Description;
 
     }
 
@@ -34,7 +30,10 @@ public class Weather {
 
     @Override
     public String toString() {
-        return mCity + ", " + mCountry + '\n' +
-                mCurrent;
+        return "Weather {" +
+                "Current Temp='" + mCurrent + '\n' +
+                ", City='" + mCity + '\n' +
+                ", Country='" + mCountry + '\n' +
+                '}';
     }
 }

@@ -1,83 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="0dp"
-    app:cardCornerRadius="0dp">
+    android:background="@color/black"
+    tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/textview_weather"
-        android:layout_width="391dp"
+    <ImageView
+        android:id="@+id/weatherIcon"
+        android:layout_width="154dp"
+        android:layout_height="138dp"
+        android:layout_marginTop="425dp"
+        android:layout_marginLeft="215dp">
+
+    </ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?colorPrimary"
-        android:padding="8dp"
-        android:text="Weather Status"
-        android:textAlignment="center"
-        android:textColor="@color/light_gray"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textview_highTemp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_time" />
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        android:layout_above="@+id/cityFinder">
 
-    <TextView
-        android:id="@+id/textview_time"
-        android:layout_width="391dp"
-        android:layout_height="50dp"
-
-        android:layout_marginTop="32dp"
-        android:background="?colorPrimary"
-        android:padding="8dp"
-        android:text="Time"
-        android:textAlignment="center"
-        android:textColor="@color/light_gray"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textview_weather"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.433"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textview_highTemp"
-        android:layout_width="391dp"
-        android:layout_height="50dp"
-        android:background="?colorPrimary"
-        android:padding="8dp"
-        android:text="High Temp"
-        android:textAlignment="center"
-        android:textColor="@color/light_gray"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textview_lowTemp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_weather" />
-
-    <TextView
-        android:id="@+id/textview_lowTemp"
-        android:layout_width="391dp"
-        android:layout_height="50dp"
-        android:background="?colorPrimary"
-        android:padding="8dp"
-        android:text="Low Temp"
-        android:textAlignment="center"
-        android:textColor="@color/light_gray"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.558"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_highTemp" />
+    </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="211dp"
+        android:layout_height="208dp"
+        android:layout_above="@+id/cityFinder"
+        android:layout_marginBottom="48dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="25dp"
+            android:text="0*F"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/weatherCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="30dp"
+            android:text="-------"
+            android:textColor="@color/white"
+            android:textSize="30sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/cityName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="30sp"
+            android:text="Getting City..."
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="30dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/cityFinder"
+        android:background="@drawable/ic_weather_city_search"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search For City"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            android:textSize="16sp" />
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
+
