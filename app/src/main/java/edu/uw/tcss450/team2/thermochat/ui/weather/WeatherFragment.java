@@ -19,7 +19,10 @@ import edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListViewModel;
 import edu.uw.tcss450.team2.thermochat.ui.contacts.ContactRecyclerViewAdapter;
 
 /**
- * A simple {@link Fragment} subclass.
+ * The fragment for the main weather page of the application.
+ *
+ * @author Sierra C
+ * @version Dec. 2021
  */
 public class WeatherFragment extends Fragment {
 
@@ -55,12 +58,6 @@ public class WeatherFragment extends Fragment {
         mModel.addWeatherObserver(getViewLifecycleOwner(), weather ->
                 binding.textviewWeather.setText("" + mModel.getCurrentWeather()));
 
-//            //if (!contactList.isEmpty()) {
-//            binding.textview_weather.setAdapter(
-//                    new ContactRecyclerViewAdapter()
-//            );
-//            //}
-//        });
     }
 
 

@@ -33,6 +33,9 @@ import edu.uw.tcss450.team2.thermochat.ui.contacts.Contact;
 
 /**
  * A ViewModel for a list of chats.
+ *
+ * @author Sierra C
+ * @version Dec. 2021
  */
 public class ChatListViewModel extends AndroidViewModel {
 
@@ -123,6 +126,13 @@ public class ChatListViewModel extends AndroidViewModel {
         //throw new IllegalStateException(error.getMessage());
     }
 
+    /**
+     * Connects to webservice endpoint to add a new chat to the
+     * web service database.
+     *
+     * @param jwt a valid jwt.
+     * @param name The name of the chat room
+     */
     public void addChat(final String jwt, final String name) {
         String url = getApplication().getResources().getString(R.string.base_url) + "chats";
 
@@ -154,31 +164,14 @@ public class ChatListViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
 
-    public void deleteChat(final int chatId) {
-        String url = getApplication().getResources().getString(R.string.base_url) + "chats/"
-                + chatId + "/" + mUserModel.getEmail();
 
-        Request request = new JsonObjectRequest(
-                Request.Method.DELETE,
-                url,
-                null,
-                mResponse::setValue,
-                this::handleError) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", mUserModel.getmJwt());
-                return headers;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                10_000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        ));
-        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
-    }
-
+    /**
+     * Connects to webservice endpoint to add the user to the
+     * associated chat room.
+     *
+     * @param jwt
+     * @param chatID
+     */
     public void addMembers(final String jwt, int chatID) {
         String url = getApplication().getResources().getString(R.string.base_url) + "chats/" + chatID;
 
@@ -186,43 +179,6 @@ public class ChatListViewModel extends AndroidViewModel {
 
         try {
             body.put("chatid", chatID);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        System.out.println(body.toString());
-
-        Request request = new JsonObjectRequest(
-                Request.Method.PUT,
-                url,
-                body, //push token found in the JSONObject body
-                mResponse::setValue,
-                this::handleError) {
-
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                // add headers <key,value>
-                headers.put("Authorization", jwt);
-                return headers;
-            }
-        };
-
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                10_000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
-                .addToRequestQueue(request);
-    }
-
-    public void addOtherMembers(final String jwt, int chatID, String userName) {
-        String url = getApplication().getResources().getString(R.string.base_url) + "chats/" + chatID + "/" + userName;
-
-        JSONObject body = new JSONObject();
-
-        try {
-            body.put("chatid", chatID);
-            body.put("username" , userName);
         } catch (JSONException e) {
             e.printStackTrace();
         }

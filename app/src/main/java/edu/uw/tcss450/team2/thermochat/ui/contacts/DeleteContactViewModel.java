@@ -21,11 +21,21 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * The view model for deleting a contact.
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
 public class DeleteContactViewModel extends AndroidViewModel {
 
     private final MutableLiveData<JSONObject> mResponse;
 
-
+    /**
+     * The constructor for the viewmodel
+     *
+     * @param application
+     */
     public DeleteContactViewModel(@NonNull Application application) {
         super(application);
 
@@ -33,6 +43,12 @@ public class DeleteContactViewModel extends AndroidViewModel {
         mResponse.setValue(new JSONObject());
     }
 
+    /**
+     * Connects to the web service to delete the contact the user chooses.
+     *
+     * @param jwt The users jwt
+     * @param memberID The user id of the contact being removed
+     */
     public void deleteContact (String jwt, int memberID){
         String url = "https://team-2-tcss-450-project.herokuapp.com/contacts/?memberId=" +
                 memberID;
@@ -62,26 +78,12 @@ public class DeleteContactViewModel extends AndroidViewModel {
     }
 
     private void handleError(final VolleyError error) {
-        if (Objects.isNull(error.networkResponse)) {
-            try {
-                mResponse.setValue(new JSONObject("{" +
-                        "error:\"" + error.getMessage() +
-                        "\"}"));
-            } catch (JSONException e) {
-                Log.e("JSON PARSE", "JSON Parse Error in NCVM");
-            }
-        }
-        else {
-            String data = new String(error.networkResponse.data, Charset.defaultCharset())
-                    .replace('\"', '\'');
-            try {
-                mResponse.setValue(new JSONObject("{" +
-                        "code:" + error.networkResponse.statusCode +
-                        ", data:\"" + data +
-                        "\"}"));
-            } catch (JSONException e) {
-                Log.e("JSON PARSE", "JSON Parse Error in NCVM");
-            }
+        try {
+            mResponse.setValue(new JSONObject("{" +
+                    "error:\"" + error.getMessage() +
+                    "\"}"));
+        } catch (JSONException e) {
+            Log.e("JSON PARSE", "JSON Parse Error in NCVM");
         }
     }
 }

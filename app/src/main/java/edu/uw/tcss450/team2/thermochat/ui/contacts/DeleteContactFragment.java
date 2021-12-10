@@ -18,6 +18,12 @@ import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentDeleteContactBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 
+/**
+ * The fragment for deleting a contact.
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
 public class DeleteContactFragment extends Fragment {
 
     private DeleteContactViewModel mModel;

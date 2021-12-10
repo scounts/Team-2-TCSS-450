@@ -29,6 +29,12 @@ import edu.uw.tcss450.team2.thermochat.databinding.FragmentContactRequestCardBin
 import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 
+/**
+ * The recycler view for displaying the users contact requests.
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
 public class ContactRequestRecyclerViewAdapter extends
         RecyclerView.Adapter<ContactRequestRecyclerViewAdapter.ContactRequestViewHolder> {
 
@@ -42,9 +48,10 @@ public class ContactRequestRecyclerViewAdapter extends
 
 
     /**
-     * A constructor for teh contact request recycler view.
+     * The constructor for the recycler view.
      *
      * @param items a list of contacts.
+     * @param a The parent FragmentActivity
      */
     public ContactRequestRecyclerViewAdapter(List < Contact > items, FragmentActivity a) {
         this.mContactRequests = items;
@@ -80,7 +87,7 @@ public class ContactRequestRecyclerViewAdapter extends
 
 
     /**
-     * An inner class which hold the view for a contact.
+     * An inner class to hold the view for a contact.
      */
     public class ContactRequestViewHolder extends RecyclerView.ViewHolder {
 
@@ -89,7 +96,7 @@ public class ContactRequestRecyclerViewAdapter extends
         public Contact mContact;
 
         /**
-         * Constructore for teh contact view holder.
+         * Constructor for the contact view holder.
          *
          * @param view the view.
          */
@@ -101,7 +108,7 @@ public class ContactRequestRecyclerViewAdapter extends
 
 
         /**
-         * Sets the contact.
+         * Sets the contact and card UI functions.
          *
          * @param contact the contact
          */
@@ -173,7 +180,7 @@ public class ContactRequestRecyclerViewAdapter extends
 
         }
 
-        public void deleteRequest(){
+        private void deleteRequest(){
             mContactRequests.remove(mContact);
             notifyDataSetChanged();
         }

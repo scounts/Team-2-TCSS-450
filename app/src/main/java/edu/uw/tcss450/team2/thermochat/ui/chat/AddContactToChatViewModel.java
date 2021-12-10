@@ -29,6 +29,11 @@ public class AddContactToChatViewModel extends AndroidViewModel {
 
     private final MutableLiveData<JSONObject> mResponse;
 
+    /**
+     * The constructor for the ViewModel.
+     *
+     * @param application
+     */
     public AddContactToChatViewModel(@NonNull Application application) {
         super(application);
 
@@ -37,7 +42,7 @@ public class AddContactToChatViewModel extends AndroidViewModel {
     }
 
     /**
-     * Adds a response to the view model.
+     * Adds a response observer to the view model.
      *
      * @param owner
      * @param observer
@@ -50,6 +55,7 @@ public class AddContactToChatViewModel extends AndroidViewModel {
 
     /**
      * A method connecting to a webservice endpoint for adding users to a chat room
+     *
      * @param jwt a valid jwt
      * @param chatID a valid chat ID
      * @param memberID the users member id
@@ -95,26 +101,12 @@ public class AddContactToChatViewModel extends AndroidViewModel {
      * handles errors with connecting the the webservice.
      */
     private void handleError(final VolleyError error) {
-        if (Objects.isNull(error.networkResponse)) {
-            try {
-                mResponse.setValue(new JSONObject("{" +
-                        "error:\"" + error.getMessage() +
-                        "\"}"));
-            } catch (JSONException e) {
-                Log.e("JSON PARSE", "JSON Parse Error in NCVM");
-            }
-        }
-        else {
-            String data = new String(error.networkResponse.data, Charset.defaultCharset())
-                    .replace('\"', '\'');
-            try {
-                mResponse.setValue(new JSONObject("{" +
-                        "code:" + error.networkResponse.statusCode +
-                        ", data:\"" + data +
-                        "\"}"));
-            } catch (JSONException e) {
-                Log.e("JSON PARSE", "JSON Parse Error in NCVM");
-            }
+        try {
+            mResponse.setValue(new JSONObject("{" +
+                    "error:\"" + error.getMessage() +
+                    "\"}"));
+        } catch (JSONException e) {
+            Log.e("JSON PARSE", "JSON Parse Error in NCVM");
         }
     }
 }

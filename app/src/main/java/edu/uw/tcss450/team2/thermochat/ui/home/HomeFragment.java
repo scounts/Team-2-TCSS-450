@@ -16,10 +16,16 @@ import edu.uw.tcss450.team2.thermochat.databinding.FragmentRegisterBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A fragment that represents the home page of the app.
+ *
+ * @author Sierra C
+ * @version Dec. 2021
  */
 public class HomeFragment extends Fragment {
 
+    /**
+     * An empty constructor to instantiate the fragment
+     */
     public HomeFragment() {
         // Required empty public constructor
     }

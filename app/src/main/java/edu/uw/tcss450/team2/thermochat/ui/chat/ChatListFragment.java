@@ -21,7 +21,11 @@ import edu.uw.tcss450.team2.thermochat.ui.chat.ChatListViewModel;
 import edu.uw.tcss450.team2.thermochat.ui.chat.ChatListRecyclerViewAdapter;
 
 /**
- * A simple {@link Fragment} subclass.
+ * The fragment that displays all of the chat rooms that
+ * the user is a member of.
+ *
+ * @author Sierra C
+ * @version Dec. 2021
  */
 public class ChatListFragment extends Fragment {
 
@@ -30,6 +34,9 @@ public class ChatListFragment extends Fragment {
     private FragmentChatListBinding binding;
     private UserInfoViewModel model;
 
+    /**
+     * An empty constructor to instantiate the fragment
+     */
     public ChatListFragment() {
         // Required empty public constructor
     }

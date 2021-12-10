@@ -16,7 +16,14 @@ import edu.uw.tcss450.team2.thermochat.databinding.FragmentChatCardBinding;
 
 import edu.uw.tcss450.team2.thermochat.ui.chat.ChatRoom;
 
-public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<edu.uw.tcss450.team2.thermochat.ui.chat.ChatListRecyclerViewAdapter.ChatListViewHolder> {
+/**
+ * The RecyclerView for the Chat list fragment
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
+public class ChatListRecyclerViewAdapter extends
+        RecyclerView.Adapter<edu.uw.tcss450.team2.thermochat.ui.chat.ChatListRecyclerViewAdapter.ChatListViewHolder> {
 
     //Store all of the blogs to present
     private final List<ChatRoom> mChats;
@@ -25,8 +32,6 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<edu.uw.tcs
     public ChatListRecyclerViewAdapter(List<ChatRoom> items) {
 
         this.mChats = items;
-
-
     }
 
     @NonNull
@@ -56,7 +61,7 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<edu.uw.tcs
         public ChatRoom mChat;
 
         /**
-         * Constructor for the contact view holder.
+         * Constructor for the chat room view holder.
          *
          * @param view the view.
          */
@@ -85,7 +90,7 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<edu.uw.tcs
         }
 
         /**
-         * Sets the contact.
+         * Sets the chat room.
          *
          * @param chat the chat room
          */

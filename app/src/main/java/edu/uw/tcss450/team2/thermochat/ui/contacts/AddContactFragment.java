@@ -25,9 +25,11 @@ import edu.uw.tcss450.team2.thermochat.MainActivity;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentAddContactBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 
-
 /**
- * A simple {@link Fragment} subclass.
+ * The fragment for adding a contact
+ *
+ * @author Sierra C
+ * @version Dec. 2021
  */
 public class AddContactFragment extends Fragment {
 
@@ -39,7 +41,9 @@ public class AddContactFragment extends Fragment {
 
     private ArrayList<String> userNames;
 
-
+    /**
+     * An empty constructor to instantiate the fragment
+     */
     public AddContactFragment() {
         // Required empty public constructor
     }

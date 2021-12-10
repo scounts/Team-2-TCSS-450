@@ -13,11 +13,22 @@ import java.util.List;
 import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentContactCardBinding;
 
-public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecyclerViewAdapter.ContactViewHolder> {
+/**
+ * A recycler view to display the users contacts each on their own UI card fragment
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
+public class ContactRecyclerViewAdapter extends
+        RecyclerView.Adapter<ContactRecyclerViewAdapter.ContactViewHolder> {
     //Store all of the blogs to present
     private final List<Contact> mContacts;
 
-    //Store all of the blogs to present
+    /**
+     * The constructor for the recycle view adapter
+     *
+     * @param items The list of contacts being inflated into card fragments
+     */
     public ContactRecyclerViewAdapter(List<Contact> items) {
         this.mContacts = items;
     }
@@ -42,6 +53,9 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
 
     /**
      * An inner class which hold the view for a contact.
+     *
+     * @author Sierra C
+     * @version Dec. 2021
      */
     public class ContactViewHolder extends RecyclerView.ViewHolder {
 

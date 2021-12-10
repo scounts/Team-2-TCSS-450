@@ -10,6 +10,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
+/**
+ *
+ *
+ * @author Sierra C
+ * @version 12/9/2021
+ */
 public class RequestQueueSingleton {
     private static RequestQueueSingleton instance;
     private static Context context;
@@ -38,6 +44,11 @@ public class RequestQueueSingleton {
                 });
     }
 
+    /**
+     * Gets the instance of the RequestQueueSingleton from context. Creates one if null.
+     * @param context
+     * @return instance
+     */
     public static synchronized RequestQueueSingleton getInstance(Context context) {
         if (instance == null) {
             instance = new RequestQueueSingleton(context);
@@ -45,6 +56,10 @@ public class RequestQueueSingleton {
         return instance;
     }
 
+    /**
+     *
+     * @return mRequestQueue
+     */
     public RequestQueue getmRequestQueue() {
         if (mRequestQueue == null) {
             // getApplicationContext() is key, it keeps you from leaking the
@@ -54,10 +69,19 @@ public class RequestQueueSingleton {
         return mRequestQueue;
     }
 
+    /**
+     * Adds request to current RequestQueue
+     *
+     * @param req The request to be added to the queue
+     */
     public <T> void addToRequestQueue(Request<T> req) {
         getmRequestQueue().add(req);
     }
 
+    /**
+     *
+     * @return The image loader associated with this RQS
+     */
     public ImageLoader getmImageLoader() {
         return mImageLoader;
     }

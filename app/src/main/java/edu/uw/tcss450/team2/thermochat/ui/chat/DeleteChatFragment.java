@@ -19,6 +19,12 @@ import edu.uw.tcss450.team2.thermochat.ui.contacts.DeleteContactFragmentArgs;
 import edu.uw.tcss450.team2.thermochat.ui.contacts.DeleteContactFragmentDirections;
 import edu.uw.tcss450.team2.thermochat.ui.contacts.DeleteContactViewModel;
 
+/**
+ * The fragment for deleting a contact connection
+ *
+ * @author Sierra C
+ * @version Dec. 2021
+ */
 public class DeleteChatFragment extends Fragment {
 
     private DeleteChatViewModel mModel;
