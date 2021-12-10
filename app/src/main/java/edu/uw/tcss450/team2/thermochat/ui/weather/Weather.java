@@ -6,12 +6,16 @@ public class Weather {
     private String mCurrent;
     private String mCity;
     private String mCountry;
+    private String mDescription;
+    private String mIcon;
 
 
-    public Weather(String Current, String City, String Country) {
+    public Weather(String Current, String City, String Country, String Description, String Icon) {
         mCurrent = Current;
         mCity = City;
         mCountry = Country;
+        mDescription = Description;
+        mIcon = Icon;
 
     }
 
@@ -27,13 +31,14 @@ public class Weather {
         return mCountry;
     }
 
+    public String getDescription() { return mDescription; }
+
+    public String getIcon() { return mIcon; }
+
 
     @Override
     public String toString() {
-        return "Weather {" +
-                "Current Temp='" + mCurrent + '\n' +
-                ", City='" + mCity + '\n' +
-                ", Country='" + mCountry + '\n' +
-                '}';
+        return mCity + '\n' + mCurrent + '\n' + mDescription;
+                //+ '\n' + mIcon;
     }
 }

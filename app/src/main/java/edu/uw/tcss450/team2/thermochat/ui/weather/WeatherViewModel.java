@@ -98,12 +98,15 @@ public class WeatherViewModel extends AndroidViewModel {
 
            JSONObject location = result.getJSONObject("location");
            JSONObject temperature = result.getJSONObject("tempature");
+           JSONObject description = location.getJSONObject("desc");
 
            String current = temperature.getString("current_temp");
            String city = location.getString("city");
            String country = location.getString("country");
+           String desc= description.getString("main");
+           String icon = description.getString("icon");
 
-           Weather weather = new Weather(current, city, country);
+           Weather weather = new Weather(current, city, country, desc, icon);
            mWeather.setValue(weather);
            temp.add(weather);
 

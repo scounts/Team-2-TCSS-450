@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:background="?colorPrimary"
         android:padding="8dp"
-        android:text="Weather Status"
+        android:text="Current Weather Status"
         android:textAlignment="center"
         android:textColor="@color/light_gray"
         android:textSize="24dp"
@@ -24,7 +24,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_time" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_time"
+        />
 
     <TextView
         android:id="@+id/textview_time"
@@ -34,14 +35,14 @@
         android:layout_marginTop="32dp"
         android:background="?colorPrimary"
         android:padding="8dp"
-        android:text="Time"
+        android:text="Enter Location: "
         android:textAlignment="center"
         android:textColor="@color/light_gray"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textview_weather"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.433"
+        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +52,7 @@
         android:layout_height="50dp"
         android:background="?colorPrimary"
         android:padding="8dp"
-        android:text="High Temp"
+        android:text="Today (hourly)"
         android:textAlignment="center"
         android:textColor="@color/light_gray"
         android:textSize="24sp"
@@ -68,7 +69,7 @@
         android:layout_height="50dp"
         android:background="?colorPrimary"
         android:padding="8dp"
-        android:text="Low Temp"
+        android:text="Daily"
         android:textAlignment="center"
         android:textColor="@color/light_gray"
         android:textSize="24sp"
