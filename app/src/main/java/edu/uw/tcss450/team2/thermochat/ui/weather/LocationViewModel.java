@@ -25,6 +25,7 @@ public class LocationViewModel extends ViewModel {
     public void setLocation(final Location location) {
         if (!location.equals(mLocation.getValue())) {
             mLocation.setValue(location);
+            //
         }
     }
 
