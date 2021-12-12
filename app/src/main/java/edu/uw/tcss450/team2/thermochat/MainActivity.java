@@ -85,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     @Override
@@ -147,7 +149,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_sign_out) {
+
+        if (id == R.id.action_settings) {
+        } else
+            if (id == R.id.action_sign_out) {
             signOut();
         }
         return super.onOptionsItemSelected(item);

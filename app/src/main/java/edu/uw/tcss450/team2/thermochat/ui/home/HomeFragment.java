@@ -1,4 +1,5 @@
 package edu.uw.tcss450.team2.thermochat.ui.home;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.uw.tcss450.team2.thermochat.R;
-import edu.uw.tcss450.team2.thermochat.databinding.FragmentHomeBinding;
-import edu.uw.tcss450.team2.thermochat.databinding.FragmentRegisterBinding;
+import edu.uw.tcss450.team2.thermochat.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
+import edu.uw.tcss450.team2.thermochat.ui.weather.WeatherViewModel;
 
 /**
  * A fragment that represents the home page of the app.
@@ -23,11 +24,20 @@ import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
  */
 public class HomeFragment extends Fragment {
 
-    /**
-     * An empty constructor to instantiate the fragment
-     */
-    public HomeFragment() {
-        // Required empty public constructor
+    //WeatherViewModel mModel;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        /*
+        mModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
+
+        UserInfoViewModel model = new ViewModelProvider(getActivity())
+                .get(UserInfoViewModel.class);
+
+        mModel.connectGet(model.getmJwt());
+
+         */
     }
 
 
@@ -41,8 +51,19 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         UserInfoViewModel model = new ViewModelProvider(getActivity())
                 .get(UserInfoViewModel.class);
+
+        /*
+        FragmentWeatherBinding binding = FragmentWeatherBinding.bind(getView());
+
+        mModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
+        //mModel.
+        mModel.addWeatherObserver(getViewLifecycleOwner(), weather ->
+                binding.temp.setText("" + mModel.getCurrentWeather()));
+
+         */
 
     }
 }

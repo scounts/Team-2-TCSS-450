@@ -31,12 +31,16 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         mModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
 
         UserInfoViewModel model = new ViewModelProvider(getActivity())
                 .get(UserInfoViewModel.class);
 
         mModel.connectGet(model.getmJwt());
+
+
     }
 
 
@@ -52,6 +56,7 @@ public class WeatherFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         FragmentWeatherBinding binding = FragmentWeatherBinding.bind(getView());
+
 
         mModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
         //mModel.
