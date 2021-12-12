@@ -17,6 +17,7 @@ import edu.uw.tcss450.team2.thermochat.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
 import edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListViewModel;
 import edu.uw.tcss450.team2.thermochat.ui.contacts.ContactRecyclerViewAdapter;
+import edu.uw.tcss450.team2.thermochat.ui.weather.LocationViewModel;
 
 /**
  * The fragment for the main weather page of the application.
@@ -27,16 +28,16 @@ import edu.uw.tcss450.team2.thermochat.ui.contacts.ContactRecyclerViewAdapter;
 public class WeatherFragment extends Fragment {
 
     WeatherViewModel mModel;
+    LocationViewModel mModelL;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
-
+        mModelL = new ViewModelProvider(getActivity()).get(LocationViewModel.class);
         UserInfoViewModel model = new ViewModelProvider(getActivity())
                 .get(UserInfoViewModel.class);
-
-        mModel.connectGet(model.getmJwt());
+        mModel.connectGet(model.getmJwt(), String.valueOf(mModelL.getCurrentLocation().getLatitude()), String.valueOf(mModelL.getCurrentLocation().getLongitude()));
     }
 
 
@@ -54,6 +55,8 @@ public class WeatherFragment extends Fragment {
         FragmentWeatherBinding binding = FragmentWeatherBinding.bind(getView());
 
         mModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
+        //mModelL = new ViewModelProvider(getActivity()).get(LocationViewModel.class);
+
         //mModel.
         mModel.addWeatherObserver(getViewLifecycleOwner(), weather ->
                 binding.temp.setText("" + mModel.getCurrentWeather()));
