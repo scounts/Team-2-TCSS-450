@@ -107,7 +107,7 @@ public class WeatherViewModel extends AndroidViewModel {
            String desc= description.getString("main");
            String icon = description.getString("icon");
 
-           Weather weather = new Weather(current, city, country, desc, icon);
+           Weather weather = new Weather(current, city, country, desc);
            mWeather.setValue(weather);
            temp.add(weather);
 

@@ -11,11 +11,11 @@ public class Weather {
     private String mDescription;
 
 
-    public Weather(String Current, String City, String Country) {
+    public Weather(String Current, String City, String Country, String Description) {
         mCurrent = Current;
         mCity = City;
         mCountry = Country;
-        //mDescription = Description;
+        mDescription = Description;
 
     }
 
