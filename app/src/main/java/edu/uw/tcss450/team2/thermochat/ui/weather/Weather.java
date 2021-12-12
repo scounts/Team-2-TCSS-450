@@ -9,6 +9,7 @@ public class Weather {
     private String mCity;
     private String mCountry;
     private String mDescription;
+    private String Icon;
 
 
     public Weather(String Current, String City, String Country, String Description) {
