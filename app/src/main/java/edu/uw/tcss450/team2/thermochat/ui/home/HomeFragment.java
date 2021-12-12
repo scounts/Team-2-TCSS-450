@@ -11,16 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import edu.uw.tcss450.team2.thermochat.MainActivity;
+
 import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentHomeBinding;
-import edu.uw.tcss450.team2.thermochat.databinding.FragmentRegisterBinding;
-import edu.uw.tcss450.team2.thermochat.databinding.FragmentWeatherBinding;
-import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
-import edu.uw.tcss450.team2.thermochat.ui.weather.LocationViewModel;
+
 import edu.uw.tcss450.team2.thermochat.ui.weather.WeatherViewModel;
-import edu.uw.tcss450.team2.thermochat.ui.weather.Weather;
-import edu.uw.tcss450.team2.thermochat.ui.weather.WeatherFragment;
+
 
 
 
