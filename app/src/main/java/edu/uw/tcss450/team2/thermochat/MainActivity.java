@@ -38,6 +38,7 @@ import edu.uw.tcss450.team2.thermochat.services.PushReceiver;
 import edu.uw.tcss450.team2.thermochat.ui.chat.ChatMessage;
 import edu.uw.tcss450.team2.thermochat.ui.chat.ChatViewModel;
 import edu.uw.tcss450.team2.thermochat.ui.weather.LocationViewModel;
+import edu.uw.tcss450.team2.thermochat.ui.weather.WeatherViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
     private LocationCallback mLocationCallback;
     //The ViewModel that will store the current location
     private LocationViewModel mLocationModel;
+    private WeatherViewModel mWeatherViewModel;
+    private UserInfoViewModel modelH;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +119,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mWeatherViewModel = new ViewModelProvider(this).get(WeatherViewModel.class);
+        mLocationModel = new ViewModelProvider(this).get(LocationViewModel.class);
+        modelH = new ViewModelProvider(this)
+                .get(UserInfoViewModel.class);
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
@@ -129,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
             //The user has already allowed the use of Locations. Get the current location.
             requestLocation();
         }
+
 
     }
 
@@ -179,6 +188,8 @@ public class MainActivity extends AppCompatActivity {
                                             .get(LocationViewModel.class);
                                 }
                                 mLocationModel.setLocation(location);
+                                mWeatherViewModel.connectGet(modelH.getmJwt(), String.valueOf(mLocationModel.getCurrentLocation().getLatitude()),
+                String.valueOf(mLocationModel.getCurrentLocation().getLongitude()));
                             }
                         }
                     });

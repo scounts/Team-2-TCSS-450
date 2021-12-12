@@ -36,6 +36,6 @@ public class Weather {
     @Override
     public String toString() {
         return mCity + ", " + mCountry + '\n' +
-                mCurrent;
+                mCurrent + " " + mDescription;
     }
 }
