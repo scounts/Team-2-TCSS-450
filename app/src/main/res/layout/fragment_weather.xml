@@ -29,9 +29,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="367dp"
+        android:layout_height="624dp"
         android:layout_above="@+id/cityFinder"
-        android:layout_marginBottom="262dp"
+        android:layout_marginBottom="5dp"
         android:orientation="vertical"
         android:textAlignment="center">
 
@@ -52,13 +52,37 @@
             android:id="@+id/weatherCondition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="-----a--"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25sp">
 
+        </TextView>
+
+        <TextView
+            android:id="@+id/forecast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="forecast"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="26sp">
+            android:textStyle="bold"
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/weatherdaily"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="-------"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp">
 
         </TextView>
+
+
 
     </LinearLayout>
 
@@ -70,13 +94,13 @@
         android:layout_marginStart="40dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/ic_weather_city_search">
+        android:background="@color/black">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Search For City"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="16sp" />
 

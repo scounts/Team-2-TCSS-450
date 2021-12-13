@@ -189,6 +189,8 @@ public class MainActivity extends AppCompatActivity {
                                 mLocationModel.setLocation(location);
                                 mWeatherViewModel.connectGet("current", modelH.getmJwt(), String.valueOf(mLocationModel.getCurrentLocation().getLatitude()),
                                         String.valueOf(mLocationModel.getCurrentLocation().getLongitude()));
+                                mWeatherViewModel.connectGet("daily", modelH.getmJwt(), String.valueOf(mLocationModel.getCurrentLocation().getLatitude()),
+                                        String.valueOf(mLocationModel.getCurrentLocation().getLongitude()));
                             }
                         }
                     });
