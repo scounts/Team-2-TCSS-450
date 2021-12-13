@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import edu.uw.tcss450.team2.thermochat.MainActivity;
 import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentContactRequestsBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
@@ -41,6 +42,9 @@ public class ContactRequestListFragment extends Fragment {
                 .get(UserInfoViewModel.class);
 
         mModel.connectGet(model.getmJwt());
+
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Contact Requests");
     }
 
     @Override

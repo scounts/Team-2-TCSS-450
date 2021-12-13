@@ -10,9 +10,9 @@ import java.io.Serializable;
  */
 public class Contact implements Serializable {
 
-//    private final String myEmail;
-//    private final String myFirstName;
-//    private final String myLastName;
+
+    private final String myFirstName;
+    private final String myLastName;
     private final String myUserName;
     private final int myMemberID;
 
@@ -23,9 +23,11 @@ public class Contact implements Serializable {
      * @param userName The contacts username
      * @param id The contacts ID number in the database
      */
-    public Contact( String userName, int id) {
+    public Contact( String userName, int id, String firstName, String lastName) {
         this.myUserName = userName;
         this.myMemberID = id;
+        this.myFirstName = firstName;
+        this.myLastName = lastName;
     }
 
 
@@ -45,5 +47,11 @@ public class Contact implements Serializable {
     public int getContactMemberID(){
         return myMemberID;
     }
+
+    /**
+     *
+     * @return the contacts Name
+     */
+    public String getName() { return myFirstName + " " + myLastName; }
 
 }
