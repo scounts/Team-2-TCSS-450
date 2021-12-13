@@ -30,5 +30,7 @@
     <string name="base_url">https://team-2-tcss-450-project.herokuapp.com/</string>
 
     <string name="app_name">ThermoChat</string>
+    <string name="current_weather">Current Weather:</string>
+    <string name="daily_forecast">Daily Forecast:</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
