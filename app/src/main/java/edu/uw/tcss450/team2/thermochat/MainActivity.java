@@ -23,8 +23,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.badge.BadgeDrawable;
@@ -61,11 +59,12 @@ public class MainActivity extends AppCompatActivity {
             UPDATE_INTERVAL_IN_MILLISECONDS / 2;
     // A constant int for the permissions request code. Must be a 16 bit number
     private static final int MY_PERMISSIONS_LOCATIONS = 8414;
-    private LocationRequest mLocationRequest;
+
+
     //Use a FusedLocationProviderClient to request the location
     private FusedLocationProviderClient mFusedLocationClient;
-    // Will use this call back to decide what to do when a location change is detected
-    private LocationCallback mLocationCallback;
+
+
     //The ViewModel that will store the current location
     private LocationViewModel mLocationModel;
     private WeatherViewModel mWeatherViewModel;
