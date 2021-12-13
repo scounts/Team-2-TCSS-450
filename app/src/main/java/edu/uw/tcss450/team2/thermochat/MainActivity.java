@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-               R.id.navigation_home, R.id.navigation_chat, R.id.navigation_contacts,R.id.navigation_weather)
+                R.id.navigation_home, R.id.navigation_chat, R.id.navigation_contacts,R.id.navigation_weather)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -187,8 +187,10 @@ public class MainActivity extends AppCompatActivity {
                                             .get(LocationViewModel.class);
                                 }
                                 mLocationModel.setLocation(location);
-                                mWeatherViewModel.connectGet(modelH.getmJwt(), String.valueOf(mLocationModel.getCurrentLocation().getLatitude()),
-                String.valueOf(mLocationModel.getCurrentLocation().getLongitude()));
+                                mWeatherViewModel.connectGet("current", modelH.getmJwt(), String.valueOf(mLocationModel.getCurrentLocation().getLatitude()),
+                                        String.valueOf(mLocationModel.getCurrentLocation().getLongitude()));
+                                mWeatherViewModel.connectGet("daily", modelH.getmJwt(), String.valueOf(mLocationModel.getCurrentLocation().getLatitude()),
+                                        String.valueOf(mLocationModel.getCurrentLocation().getLongitude()));
                             }
                         }
                     });

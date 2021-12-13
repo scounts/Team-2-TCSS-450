@@ -27,14 +27,24 @@ public class WeatherFragment extends Fragment {
     WeatherViewModel mModel;
     LocationViewModel mModelL;
 
+    WeatherViewModel mModelList;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
-        mModelL = new ViewModelProvider(getActivity()).get(LocationViewModel.class);
-        UserInfoViewModel model = new ViewModelProvider(getActivity())
-                .get(UserInfoViewModel.class);
-        mModel.connectGet(model.getmJwt(), String.valueOf(mModelL.getCurrentLocation().getLatitude()), String.valueOf(mModelL.getCurrentLocation().getLongitude()));
+//        mModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
+//        mModelL = new ViewModelProvider(getActivity()).get(LocationViewModel.class);
+//        UserInfoViewModel model = new ViewModelProvider(getActivity())
+//                .get(UserInfoViewModel.class);
+//        mModel.connectGet("current", model.getmJwt(), String.valueOf(mModelL.getCurrentLocation().getLatitude()),
+//                String.valueOf(mModelL.getCurrentLocation().getLongitude()));
+
+//        mModel.connectGet("daily", model.getmJwt(), String.valueOf(mModelL.getCurrentLocation().getLatitude()),
+//                String.valueOf(mModelL.getCurrentLocation().getLongitude()));
+//        mModelList = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
+//        mModelList.connectGet("daily", model.getmJwt(), String.valueOf(mModelL.getCurrentLocation().getLatitude()),
+//                String.valueOf(mModelL.getCurrentLocation().getLongitude()));
+
     }
 
 
@@ -52,12 +62,29 @@ public class WeatherFragment extends Fragment {
         FragmentWeatherBinding binding = FragmentWeatherBinding.bind(getView());
 
         mModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
-        //mModelL = new ViewModelProvider(getActivity()).get(LocationViewModel.class);
 
-        //mModel.
         mModel.addWeatherObserver(getViewLifecycleOwner(), weather ->
                 binding.temp.setText(mModel.getCurrentWeather()));
                 binding.weatherCondition.setText(mModel.getHL());
+
+        mModel.addWeatherObserverList(getViewLifecycleOwner(), weatherList -> {
+            Weather day1 = weatherList.get(0);
+            Weather day2 = weatherList.get(1);
+            Weather day3 = weatherList.get(2);
+            Weather day4 = weatherList.get(3);
+            Weather day5 = weatherList.get(4);
+            Weather day6 = weatherList.get(5);
+            Weather day7 = weatherList.get(6);
+
+            binding.forecast.setText("\n" + "This week's forecast:");
+            binding.weatherdaily.setText("\n" + day1.getDayFormat() + '\n' + '\n' + day2.getDayFormat() + '\n' + '\n' + day3.getDayFormat() + '\n'+ '\n' + day4.getDayFormat() + '\n' + '\n' + day5.getDayFormat() + '\n' + '\n' + day6.getDayFormat() + '\n' + '\n' + day7.getDayFormat())
+
+
+
+
+            ;
+
+        });
 
     }
 

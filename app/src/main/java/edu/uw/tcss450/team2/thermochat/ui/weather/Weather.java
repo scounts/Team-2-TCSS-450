@@ -9,15 +9,26 @@ public class Weather {
     private String mCity;
     private String mCountry;
     private String mDescription;
-    private String Icon;
+    private String mHigh;
+    private String mLow;
+    private String mDate;
 
-
-    public Weather(String Current, String City, String Country, String Description) {
+    //for current
+    public Weather(String Current, String City, String Country, String Description, String high, String low) {
         mCurrent = Current;
         mCity = City;
         mCountry = Country;
         mDescription = Description;
-
+        mHigh = high;
+        mLow = low;
+        //mDate = "";
+    }
+    //for daily
+    public Weather(String high, String low, String date, String desc) {
+        mHigh = high;
+        mLow = low;
+        mDate = date;
+        mDescription = desc;
     }
 
     public String getCurrent() {
@@ -32,15 +43,36 @@ public class Weather {
         return mCountry;
     }
 
+    public String getDate() {
+        return mDate;
+    }
+
+    public String getHigh() {
+        return mHigh;
+    }
+
+    public String getLow() {
+        return mLow;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
+
 
     @Override
     public String toString() {
         return mCity + ", " + mCountry + '\n' +
-                mCurrent + " " + mDescription;
+                mDescription + " " + mCurrent;
     }
 
-    public Object getHighLow() {
-        return mCurrent;
+    public String getHighLow() {
+
+        return "H:" + mHigh + " " + "L:" + mLow;
+    }
+
+    public String getDayFormat() {
+        return mDate + "    " + mDescription + "    " + mHigh + " " + mLow;
     }
 
 }

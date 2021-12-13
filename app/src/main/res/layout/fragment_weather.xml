@@ -12,8 +12,8 @@
         android:id="@+id/weatherIcon"
         android:layout_width="154dp"
         android:layout_height="138dp"
-        android:layout_marginTop="425dp"
-        android:layout_marginLeft="215dp">
+        android:layout_marginLeft="215dp"
+        android:layout_marginTop="425dp">
 
     </ImageView>
 
@@ -28,18 +28,20 @@
 
 
     <LinearLayout
-        android:layout_width="211dp"
-        android:layout_height="208dp"
+        android:layout_width="match_parent"
+        android:layout_height="624dp"
         android:layout_above="@+id/cityFinder"
-        android:layout_marginBottom="48dp"
-        android:orientation="vertical">
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        android:textAlignment="center">
 
         <TextView
             android:id="@+id/temp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="25dp"
+
             android:text="0*F"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold">
@@ -50,45 +52,57 @@
             android:id="@+id/weatherCondition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="30dp"
-            android:text="-------"
+            android:text="-----a--"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="30sp">
+            android:textSize="25sp">
 
         </TextView>
 
         <TextView
-            android:id="@+id/cityName"
+            android:id="@+id/forecast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="30sp"
-            android:text="Getting City..."
+            android:text="forecast"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="30sp"
-            android:textStyle="bold">
+            android:textSize="26sp">
+            android:textStyle="bold"
 
         </TextView>
+
+        <TextView
+            android:id="@+id/weatherdaily"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-------"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp">
+
+        </TextView>
+
+
 
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/cityFinder"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="30dp"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/cityFinder"
-        android:background="@drawable/ic_weather_city_search"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="30dp"
+        android:background="@color/black">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search For City"
-            android:textColor="@color/white"
             android:layout_centerInParent="true"
+            android:text=""
+            android:textColor="@color/white"
             android:textSize="16sp" />
-
 
 
     </RelativeLayout>
