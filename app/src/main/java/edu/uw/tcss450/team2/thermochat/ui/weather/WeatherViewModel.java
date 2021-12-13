@@ -61,8 +61,8 @@ public class WeatherViewModel extends AndroidViewModel {
      *
      * @param jwt a valid jwt.
      */
-    public void connectGet (String jwt){
-        String url = "https://team-2-tcss-450-project.herokuapp.com/weather/current";
+    public void connectGet (String jwt, String latitude, String longitude){
+        String url = "https://team-2-tcss-450-project.herokuapp.com/weather/current/?latitude=" + latitude +"&longitude=" + longitude;
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -98,13 +98,16 @@ public class WeatherViewModel extends AndroidViewModel {
         try {
 
            JSONObject location = result.getJSONObject("location");
-           JSONObject temperature = result.getJSONObject("tempature");
+           JSONObject temperature = result.getJSONObject("temperature");
+           JSONObject description = location.getJSONObject("desc");
 
            String current = temperature.getString("current_temp");
            String city = location.getString("city");
            String country = location.getString("country");
+           String desc= description.getString("main");
+           String icon = description.getString("icon");
 
-           Weather weather = new Weather(current, city, country);
+           Weather weather = new Weather(current, city, country, desc);
            mWeather.setValue(weather);
            temp.add(weather);
 
@@ -114,12 +117,18 @@ public class WeatherViewModel extends AndroidViewModel {
             Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
         }
 
-        mWeatherList.setValue(temp);
-        //mWeatherList.
+        //mWeatherList.setValue(temp);
+
     }
 
+    //For home fragment / current weather use:
     public String getCurrentWeather() {
         return mWeather.getValue().toString();
+
+    }
+
+    public String getHL() {
+        return mWeather.getValue().getHighLow().toString();
 
     }
 

@@ -9,13 +9,14 @@ public class Weather {
     private String mCity;
     private String mCountry;
     private String mDescription;
+    private String Icon;
 
 
-    public Weather(String Current, String City, String Country) {
+    public Weather(String Current, String City, String Country, String Description) {
         mCurrent = Current;
         mCity = City;
         mCountry = Country;
-        //mDescription = Description;
+        mDescription = Description;
 
     }
 
@@ -35,6 +36,11 @@ public class Weather {
     @Override
     public String toString() {
         return mCity + ", " + mCountry + '\n' +
-                mCurrent;
+                mCurrent + " " + mDescription;
     }
+
+    public Object getHighLow() {
+        return mCurrent;
+    }
+
 }
