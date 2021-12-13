@@ -105,9 +105,10 @@ public class WeatherViewModel extends AndroidViewModel {
            String city = location.getString("city");
            String country = location.getString("country");
            String desc= description.getString("main");
-           String icon = description.getString("icon");
+           String high = temperature.getString("high_temp");
+           String low = temperature.getString("low_temp");
 
-           Weather weather = new Weather(current, city, country, desc);
+           Weather weather = new Weather(current, city, country, desc, high, low);
            mWeather.setValue(weather);
            temp.add(weather);
 
@@ -128,7 +129,7 @@ public class WeatherViewModel extends AndroidViewModel {
     }
 
     public String getHL() {
-        return mWeather.getValue().getHighLow().toString();
+        return mWeather.getValue().getHighLow();
 
     }
 

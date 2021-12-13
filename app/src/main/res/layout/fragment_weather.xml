@@ -57,18 +57,6 @@
 
         </TextView>
 
-        <TextView
-            android:id="@+id/cityName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="30sp"
-            android:text="Getting City..."
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:textStyle="bold">
-
-        </TextView>
-
     </LinearLayout>
 
     <RelativeLayout

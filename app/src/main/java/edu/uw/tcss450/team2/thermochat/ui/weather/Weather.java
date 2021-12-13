@@ -9,14 +9,17 @@ public class Weather {
     private String mCity;
     private String mCountry;
     private String mDescription;
-    private String Icon;
+    private String mHigh;
+    private String mLow;
 
 
-    public Weather(String Current, String City, String Country, String Description) {
+    public Weather(String Current, String City, String Country, String Description, String high, String low) {
         mCurrent = Current;
         mCity = City;
         mCountry = Country;
         mDescription = Description;
+        mHigh = high;
+        mLow = low;
 
     }
 
@@ -39,8 +42,9 @@ public class Weather {
                 mCurrent + " " + mDescription;
     }
 
-    public Object getHighLow() {
-        return mCurrent;
+    public String getHighLow() {
+
+        return "H:" + mHigh + " " + "L:" + mLow;
     }
 
 }
