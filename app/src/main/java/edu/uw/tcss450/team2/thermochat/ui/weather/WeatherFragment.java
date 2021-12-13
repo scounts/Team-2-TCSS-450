@@ -34,7 +34,7 @@ public class WeatherFragment extends Fragment {
         mModelL = new ViewModelProvider(getActivity()).get(LocationViewModel.class);
         UserInfoViewModel model = new ViewModelProvider(getActivity())
                 .get(UserInfoViewModel.class);
-        mModel.connectGet(model.getmJwt(), String.valueOf(mModelL.getCurrentLocation().getLatitude()), String.valueOf(mModelL.getCurrentLocation().getLongitude()));
+        mModel.connectGet("current", model.getmJwt(), String.valueOf(mModelL.getCurrentLocation().getLatitude()), String.valueOf(mModelL.getCurrentLocation().getLongitude()));
     }
 
 

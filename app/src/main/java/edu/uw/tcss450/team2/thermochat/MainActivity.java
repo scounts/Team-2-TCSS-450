@@ -23,8 +23,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.badge.BadgeDrawable;
@@ -61,11 +59,12 @@ public class MainActivity extends AppCompatActivity {
             UPDATE_INTERVAL_IN_MILLISECONDS / 2;
     // A constant int for the permissions request code. Must be a 16 bit number
     private static final int MY_PERMISSIONS_LOCATIONS = 8414;
-    private LocationRequest mLocationRequest;
+
+
     //Use a FusedLocationProviderClient to request the location
     private FusedLocationProviderClient mFusedLocationClient;
-    // Will use this call back to decide what to do when a location change is detected
-    private LocationCallback mLocationCallback;
+
+
     //The ViewModel that will store the current location
     private LocationViewModel mLocationModel;
     private WeatherViewModel mWeatherViewModel;
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-               R.id.navigation_home, R.id.navigation_chat, R.id.navigation_contacts,R.id.navigation_weather)
+                R.id.navigation_home, R.id.navigation_chat, R.id.navigation_contacts,R.id.navigation_weather)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -188,8 +187,8 @@ public class MainActivity extends AppCompatActivity {
                                             .get(LocationViewModel.class);
                                 }
                                 mLocationModel.setLocation(location);
-                                mWeatherViewModel.connectGet(modelH.getmJwt(), String.valueOf(mLocationModel.getCurrentLocation().getLatitude()),
-                String.valueOf(mLocationModel.getCurrentLocation().getLongitude()));
+                                mWeatherViewModel.connectGet("current", modelH.getmJwt(), String.valueOf(mLocationModel.getCurrentLocation().getLatitude()),
+                                        String.valueOf(mLocationModel.getCurrentLocation().getLongitude()));
                             }
                         }
                     });
@@ -280,4 +279,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
 }

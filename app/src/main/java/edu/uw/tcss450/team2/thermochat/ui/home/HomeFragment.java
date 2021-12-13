@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
         mModelH = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
 //
         mModelH.addWeatherObserver(getViewLifecycleOwner(), weatherhome ->
-                bind.textViewWeatherLabel.setText(mModelH.getCurrentWeather()));
+                bind.textViewWeatherLabel.setText(mModelH.getCurrentWeather() + "\n" + " " + mModelH.getHL()));
                 //bind.textViewChatListt.setText(mModelH.getHL());
     }
 }

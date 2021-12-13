@@ -61,8 +61,17 @@ public class WeatherViewModel extends AndroidViewModel {
      *
      * @param jwt a valid jwt.
      */
-    public void connectGet (String jwt, String latitude, String longitude){
-        String url = "https://team-2-tcss-450-project.herokuapp.com/weather/current/?latitude=" + latitude +"&longitude=" + longitude;
+    public void connectGet (String type, String jwt, String latitude, String longitude){
+        String url = "";
+        if (type == "current") {
+            url = url + "https://team-2-tcss-450-project.herokuapp.com/weather/current/?latitude=" + latitude +"&longitude=" + longitude;
+        } else if (type == "daily") {
+            url = url + "https://team-2-tcss-450-project.herokuapp.com/weather/daily/?latitude=" + latitude +"&longitude=" + longitude;
+        } else {
+            url = null;
+        }
+
+        //String url = "https://team-2-tcss-450-project.herokuapp.com/weather/current/?latitude=" + latitude +"&longitude=" + longitude;
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -95,31 +104,37 @@ public class WeatherViewModel extends AndroidViewModel {
 
         ArrayList<Weather> temp = new ArrayList<>();
 
-        try {
+        if (result.has("location")) {
 
-           JSONObject location = result.getJSONObject("location");
-           JSONObject temperature = result.getJSONObject("temperature");
-           JSONObject description = location.getJSONObject("desc");
+            try {
 
-           String current = temperature.getString("current_temp");
-           String city = location.getString("city");
-           String country = location.getString("country");
-           String desc= description.getString("main");
-           String high = temperature.getString("high_temp");
-           String low = temperature.getString("low_temp");
+                JSONObject location = result.getJSONObject("location");
+                JSONObject temperature = result.getJSONObject("temperature");
+                JSONObject description = location.getJSONObject("desc");
 
-           Weather weather = new Weather(current, city, country, desc, high, low);
-           mWeather.setValue(weather);
-           temp.add(weather);
+                String current = temperature.getString("current_temp");
+                String city = location.getString("city");
+                String country = location.getString("country");
+                String desc = description.getString("main");
+                String high = temperature.getString("high_temp");
+                String low = temperature.getString("low_temp");
+
+                Weather weather = new Weather(current, city, country, desc, high, low);
+                mWeather.setValue(weather);
+                temp.add(weather);
 
 
-        } catch (JSONException e) {
-            Log.e("JSON PARSE ERROR", "Found in handle Success WeatherViewModel");
-            Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
+            } catch (JSONException e) {
+                Log.e("JSON PARSE ERROR", "Found in handle Success WeatherViewModel");
+                Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
+            }
+
+            //mWeatherList.setValue(temp);
+        } else if (result.has("day1")) {
+
+
+
         }
-
-        //mWeatherList.setValue(temp);
-
     }
 
     //For home fragment / current weather use:
