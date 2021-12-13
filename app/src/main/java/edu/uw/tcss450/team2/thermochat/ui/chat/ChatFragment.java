@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import edu.uw.tcss450.team2.thermochat.MainActivity;
 import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentChatBinding;
 import edu.uw.tcss450.team2.thermochat.model.UserInfoViewModel;
@@ -57,6 +58,9 @@ public class ChatFragment extends Fragment {
         mChatListViewModel = provider.get(ChatListViewModel.class);
         mChatModel.getFirstMessages(mChatID, mUserModel.getmJwt());
         mSendModel = provider.get(ChatSendViewModel.class);
+
+        ((MainActivity) getActivity())
+                .setActionBarTitle(mChatName);
     }
 
     @Override

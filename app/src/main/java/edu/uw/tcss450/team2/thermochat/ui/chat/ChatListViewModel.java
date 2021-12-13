@@ -67,6 +67,11 @@ public class ChatListViewModel extends AndroidViewModel {
         mChatList.observe(owner, observer);
     }
 
+    public void addResponseObserver(@NonNull LifecycleOwner owner,
+                                    @NonNull Observer<? super JSONObject> observer) {
+        mResponse.observe(owner, observer);
+    }
+
     /**
      * Connects to webservice endpoint to retrieve a list of chats.
      *
@@ -108,8 +113,8 @@ public class ChatListViewModel extends AndroidViewModel {
             JSONArray chats = result.getJSONArray("chats");
             for (int i = 0; i < chats.length(); i++) {
                 JSONObject chat = chats.getJSONObject(i);
-                //String name = chat.getString("name");
-                String name = "Example Chat Name";
+                String name = chat.getString("name");
+                //String name = "Example Chat Name";
                 int key = chat.getInt("chatid");
                 ChatRoom post = new ChatRoom(name, key);
                 temp.add(post);

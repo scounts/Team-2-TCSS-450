@@ -7,59 +7,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textView_addContact"
-        android:layout_width="258dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
-        android:hint="Find Contact"
-        android:textColor="@color/light_gray"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton_search"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_root"
         android:name="edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListFragment"
         android:layout_width="match_parent"
-        android:layout_height="433dp"
+        android:layout_height="560dp"
         android:orientation="vertical"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_requestContact"
-        app:layout_constraintVertical_bias="0.323"
+        app:layout_constraintVertical_bias="0.105"
         tools:context="edu.uw.tcss450.team2.thermochat.ui.contacts.ContactListFragment"
         tools:listitem="@layout/fragment_contact_card" />
 
-    <ImageButton
-        android:id="@+id/imageButton_search"
-        android:layout_width="96dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_addContact"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView_addContact" />
-
     <Button
         android:id="@+id/textView_requestContact"
-        android:layout_width="258dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="44dp"
         android:background="?colorPrimary"
-        android:text="Requests"
+        android:text="View requests"
         android:textAlignment="center"
         android:textColor="@color/light_gray"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_addContact" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/imageButton_requestContact"
@@ -71,6 +50,6 @@
         app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.887"
+        app:layout_constraintVertical_bias="0.949"
         app:srcCompat="@drawable/ic__contact_add_black_24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -58,6 +58,9 @@ public class AddContactFragment extends Fragment {
 
         mModel = new ViewModelProvider(getActivity()).get(AddContactViewModel.class);
 
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Add a Contact");
+
     }
 
     @Override

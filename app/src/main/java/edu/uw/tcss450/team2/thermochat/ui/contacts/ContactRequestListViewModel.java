@@ -111,8 +111,10 @@ public class ContactRequestListViewModel extends AndroidViewModel {
 
                 String username= contact.getString("username");
                 int memberID = contact.getInt("memberid");
+                String firstName = contact.getString("firstname");
+                String lastName = contact.getString("lastname");
 
-                Contact entry = new Contact(username, memberID);
+                Contact entry = new Contact(username, memberID, firstName, lastName);
                 temp.add(entry);
 
             }

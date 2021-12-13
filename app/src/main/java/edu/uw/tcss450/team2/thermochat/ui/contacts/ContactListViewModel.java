@@ -62,6 +62,12 @@ public class ContactListViewModel extends AndroidViewModel {
         mContactList.observe(owner, observer);
     }
 
+
+    public void addResponseObserver(@NonNull LifecycleOwner owner,
+                                    @NonNull Observer<? super JSONObject> observer) {
+        mResponse.observe(owner, observer);
+    }
+
     /**
      * Connects to webservice endpoint to retrieve a list of contacts.
      *
@@ -102,8 +108,10 @@ public class ContactListViewModel extends AndroidViewModel {
 
                 String username= contact.getString("username");
                 int memberID = contact.getInt("memberid");
+                String firstName = contact.getString("firstname");
+                String lastName = contact.getString("lastname");
 
-                Contact entry = new Contact(username, memberID);
+                Contact entry = new Contact(username, memberID, firstName, lastName);
                 temp.add(entry);
 
             }
@@ -125,5 +133,47 @@ public class ContactListViewModel extends AndroidViewModel {
                             " " +
                             data);
         }
+    }
+
+    /**
+     * Conntect to the webservice endpoint to add a contact connection
+     *
+     * @param jwt The users jwt
+     * @param uName The username of the person being sent the request
+     */
+    public void addContact(String jwt, String uName) {
+
+        String url = "https://team-2-tcss-450-project.herokuapp.com/contacts";
+
+
+        JSONObject body = new JSONObject();
+
+        try {
+            body.put("username", uName);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Request request = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                body,
+                mResponse::setValue,
+                this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", jwt);
+                return headers;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext())
+                .add(request);
     }
 }
