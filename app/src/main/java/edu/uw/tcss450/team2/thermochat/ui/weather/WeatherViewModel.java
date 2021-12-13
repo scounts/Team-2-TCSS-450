@@ -98,7 +98,7 @@ public class WeatherViewModel extends AndroidViewModel {
         try {
 
            JSONObject location = result.getJSONObject("location");
-           JSONObject temperature = result.getJSONObject("tempature");
+           JSONObject temperature = result.getJSONObject("temperature");
            JSONObject description = location.getJSONObject("desc");
 
            String current = temperature.getString("current_temp");
@@ -117,12 +117,18 @@ public class WeatherViewModel extends AndroidViewModel {
             Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
         }
 
-        mWeatherList.setValue(temp);
-        //mWeatherList.
+        //mWeatherList.setValue(temp);
+
     }
 
+    //For home fragment / current weather use:
     public String getCurrentWeather() {
         return mWeather.getValue().toString();
+
+    }
+
+    public String getHL() {
+        return mWeather.getValue().getHighLow().toString();
 
     }
 

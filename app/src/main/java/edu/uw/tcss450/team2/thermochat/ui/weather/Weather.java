@@ -38,4 +38,9 @@ public class Weather {
         return mCity + ", " + mCountry + '\n' +
                 mCurrent + " " + mDescription;
     }
+
+    public Object getHighLow() {
+        return mCurrent;
+    }
+
 }
