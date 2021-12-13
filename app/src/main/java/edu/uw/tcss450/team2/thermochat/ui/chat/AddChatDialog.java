@@ -65,6 +65,7 @@ public class AddChatDialog extends DialogFragment {
                 mChatViewModel.addResponseObserver(this.getActivity(),
                         this::observeAddUserResponse);
             }
+            dismiss();
 
         });
 
