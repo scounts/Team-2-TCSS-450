@@ -27,6 +27,7 @@ import edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragmentDirections;
  */
 public class ContactListFragment extends Fragment {
 
+    private UserInfoViewModel mInfoModel;
     private ContactListViewModel mModel;
 
     /**
@@ -41,10 +42,10 @@ public class ContactListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity()).get(ContactListViewModel.class);
 
-        UserInfoViewModel model = new ViewModelProvider(getActivity())
+        mInfoModel = new ViewModelProvider(getActivity())
                 .get(UserInfoViewModel.class);
 
-        mModel.connectGet(model.getmJwt());
+        mModel.connectGet(mInfoModel.getmJwt());
     }
 
     /**
@@ -70,13 +71,15 @@ public class ContactListFragment extends Fragment {
             binding.listRoot.setAdapter(
                     new ContactRecyclerViewAdapter(contactList)
             );
-            //}
         });
 
-        binding.imageButtonRequestContact.setOnClickListener(button ->
-            Navigation.findNavController(getView()).navigate(
-                    ContactListFragmentDirections
-                            .actionNavigationContactsToAddContactFragment()));
+        binding.imageButtonRequestContact.setOnClickListener(button ->{
+            AddContactDialog dialog = new AddContactDialog(mInfoModel, mModel);
+            dialog.show(getChildFragmentManager(), "add");
+        });
+//            Navigation.findNavController(getView()).navigate(
+//                    ContactListFragmentDirections
+//                            .actionNavigationContactsToAddContactFragment()));
 
         binding.textViewRequestContact.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(

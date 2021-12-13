@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import edu.uw.tcss450.team2.thermochat.MainActivity;
 import edu.uw.tcss450.team2.thermochat.R;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentDeleteChatBinding;
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentDeleteContactBinding;
@@ -47,6 +48,9 @@ public class DeleteChatFragment extends Fragment {
                 .get(UserInfoViewModel.class);
 
         mModel = new ViewModelProvider(getActivity()).get(DeleteChatViewModel.class);
+
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Leave " + args.getChat().getmChatName());
 
     }
 

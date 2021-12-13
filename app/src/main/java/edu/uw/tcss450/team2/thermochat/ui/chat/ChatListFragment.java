@@ -71,7 +71,8 @@ public class ChatListFragment extends Fragment {
         binding = FragmentChatListBinding.bind(getView());
 
         binding.imageButtonAddChat.setOnClickListener(button ->{
-            createChat();
+            AddChatDialog dialog = new AddChatDialog(model, mModel);
+            dialog.show(getChildFragmentManager(), "add");
         } );
 
         mModel.addChatListObserver(getViewLifecycleOwner(), chatList -> {
@@ -83,15 +84,4 @@ public class ChatListFragment extends Fragment {
         });
     }
 
-    /**
-     * creating chat room with title that user typed
-     */
-    private void createChat() {
-        String title = binding.textViewChatTitle.getText().toString().trim();
-        if(title.length() < 2){
-            binding.textViewChatTitle.setError("Please enter a valid chat room name");
-        }else{
-            mModel.addChat(model.getmJwt(), title);
-        }
-    }
 }

@@ -12,7 +12,7 @@
         android:layout_width="366dp"
         android:layout_height="571dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
@@ -35,21 +35,6 @@
             tools:context="edu.uw.tcss450.team2.thermochat.ui.chat.ChatListFragment"
             tools:listitem="@layout/fragment_contact_card" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textView_ChatTitle"
-        android:layout_width="258dp"
-        android:layout_height="wrap_content"
-        android:hint="New Chat name here"
-        android:textColorHint="@color/light_gray"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/swipe_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.143"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/imageButton_addChat"

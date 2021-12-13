@@ -87,6 +87,7 @@ public class ChatListRecyclerViewAdapter extends
                 Navigation.findNavController(mView).navigate(directions);
             });
 
+
         }
 
         /**
@@ -96,6 +97,7 @@ public class ChatListRecyclerViewAdapter extends
          */
         void setChat(final ChatRoom chat) {
             mChat = chat;
+            binding.textChatName.setText(mChat.getmChatName());
         }
 
     }

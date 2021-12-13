@@ -55,9 +55,10 @@ public class AddContactToChatFragment extends Fragment {
         AddContactToChatFragmentArgs args = AddContactToChatFragmentArgs.fromBundle(getArguments());
         mChat = args.getChat();
         mChatID = args.getChat().getmChatId();
+        mTitle = args.getChat().getmChatName();
 
-//        ((MainActivity) getActivity())
-//                .setActionBarTitle(" Add members to " + mTitle);
+        ((MainActivity) getActivity())
+                .setActionBarTitle(" Add members to " + mTitle);
 
         mContactModel = provider.get(ContactListViewModel.class);
 
@@ -92,9 +93,11 @@ public class AddContactToChatFragment extends Fragment {
                 this::observeResponse);
 
 
-        binding.buttonCancel.setOnClickListener(button -> Navigation.findNavController(getView())
-                .navigate(AddContactToChatFragmentDirections
-                        .actionAddContactToChatFragmentToChatFragment(mChat)));
+        binding.buttonCancel.setOnClickListener(button -> {
+            Navigation.findNavController(getView())
+                    .navigate(AddContactToChatFragmentDirections
+                            .actionAddContactToChatFragmentToChatFragment(mChat));
+        });
 
         binding.buttonAdd.setOnClickListener(button -> {
             try {
@@ -102,6 +105,10 @@ public class AddContactToChatFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            Navigation.findNavController(getView())
+                    .navigate(AddContactToChatFragmentDirections
+                            .actionAddContactToChatFragmentToChatFragment(mChat));
         });
     }
 

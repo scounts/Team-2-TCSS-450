@@ -114,6 +114,7 @@ public class ContactRequestRecyclerViewAdapter extends
          */
         void setContact(final Contact contact) {
             binding.textUsername.setText(contact.getUsername());
+            binding.textName.setText(contact.getName());
             mContact = contact;
 
 

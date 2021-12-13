@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 
 import java.util.ArrayList;
 
+import edu.uw.tcss450.team2.thermochat.MainActivity;
 import edu.uw.tcss450.team2.thermochat.R;
 
 import edu.uw.tcss450.team2.thermochat.databinding.FragmentDeleteContactBinding;
@@ -48,6 +49,9 @@ public class DeleteContactFragment extends Fragment {
                 .get(UserInfoViewModel.class);
 
         mModel = new ViewModelProvider(getActivity()).get(DeleteContactViewModel.class);
+
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Delete Contact");
 
     }
 
