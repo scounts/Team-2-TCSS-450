@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/contact_add_text"
+        android:id="@+id/contact_delete_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -21,7 +21,7 @@
 
 
     <Button
-        android:id="@+id/contact_add_ok"
+        android:id="@+id/contact_delete"
         style="@android:style/Widget.Material.Light.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,5 +31,5 @@
         android:textAlignment="center"
         android:textColor="#E91E63"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contact_add_text" />
+        app:layout_constraintTop_toBottomOf="@+id/contact_delete_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

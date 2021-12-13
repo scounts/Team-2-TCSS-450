@@ -59,6 +59,7 @@ public class AddContactDialog extends DialogFragment {
             mContactViewModel.addContact(mUserInfoModel.getmJwt(), userInput.getText().toString());
             mContactViewModel.addResponseObserver(this.getActivity(),
                     this::observeAddUserResponse);
+            dismiss();
         });
 
 

@@ -21,6 +21,7 @@ import edu.uw.tcss450.team2.thermochat.databinding.FragmentContactCardBinding;
  */
 public class ContactRecyclerViewAdapter extends
         RecyclerView.Adapter<ContactRecyclerViewAdapter.ContactViewHolder> {
+
     //Store all of the blogs to present
     private final List<Contact> mContacts;
 
@@ -84,8 +85,7 @@ public class ContactRecyclerViewAdapter extends
         void setContact(final Contact contact) {
             mContact = contact;
             binding.textContactUsername.setText(contact.getUsername());
-            //String contactName = contact.getContactFirstName() + " " + contact.getContactLastName();
-            String contactName = "Test Name";
+            String contactName = mContact.getName();
             binding.textContactName.setText(contactName);
 
             binding.cardRoot.setVisibility(View.VISIBLE);
